@@ -2,7 +2,7 @@
 
 [English](https://github.com/CatchZeng/dingtalk/blob/master/READMEEN.md)
 
-> DingTalk(dingding) 是钉钉机器人的 go 实现。支持`加签`安全设置，支持`链式语法`创建消息，支持文本、链接、Markdown消息类型
+> DingTalk(dingding) 是钉钉机器人的 go 实现。支持`加签`安全设置，支持`链式语法`创建消息，支持文本、链接、Markdown 消息类型
 
 ## 文档
 
@@ -10,23 +10,33 @@
 
 ## 特性
 
+- [x] 支持[命令行模式](https://github.com/CatchZeng/dingtalk#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7)
+
+- [x] 支持[module](https://github.com/CatchZeng/dingtalk#%E4%BD%9C%E4%B8%BA-module)
+
 - [x] 支持加签
 
-    ![sign](https://dingtalkdoc.oss-cn-beijing.aliyuncs.com/images/0.0.210/1572261283991-f8e35f4d-6997-4a02-9704-843ee8f97464.png)
+  ![sign](https://dingtalkdoc.oss-cn-beijing.aliyuncs.com/images/0.0.210/1572261283991-f8e35f4d-6997-4a02-9704-843ee8f97464.png)
 
 - [x] Text 消息
 
-    ![text](https://img.alicdn.com/tfs/TB1jFpqaRxRMKJjy0FdXXaifFXa-497-133.png)
+  ![text](https://img.alicdn.com/tfs/TB1jFpqaRxRMKJjy0FdXXaifFXa-497-133.png)
 
 - [x] Link 消息
 
-    ![link](https://dingtalkdoc.oss-cn-beijing.aliyuncs.com/images/0.0.210/1570679827267-6243216b-d1c3-48b7-9b1e-0f0b4211b50b.png)
+  ![link](https://dingtalkdoc.oss-cn-beijing.aliyuncs.com/images/0.0.210/1570679827267-6243216b-d1c3-48b7-9b1e-0f0b4211b50b.png)
 
 - [x] Markdown 消息
 
-    ![markdown](https://img.alicdn.com/tfs/TB1yL3taUgQMeJjy0FeXXXOEVXa-492-380.png)
+  ![markdown](https://img.alicdn.com/tfs/TB1yL3taUgQMeJjy0FeXXXOEVXa-492-380.png)
 
 ## 安装
+
+### 二进制安装
+
+到 [releases](https://github.com/CatchZeng/dingtalk/releases/) 下载相应平台的二进制可执行文件，然后加入到 PATH 环境变量即可。
+
+### go get 安装
 
 ```shell
 go get github.com/CatchZeng/dingtalk

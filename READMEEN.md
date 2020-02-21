@@ -10,6 +10,10 @@
 
 ## Feature
 
+- [x] Support [Command Line Mode](https://github.com/CatchZeng/dingtalk/blob/master/READMEEN.md#use-as-command-line-tool)
+
+- [x] Support [module](https://github.com/CatchZeng/dingtalk/blob/master/READMEEN.md#use-as-module)
+
 - [x] Support sign
 
     ![sign](https://dingtalkdoc.oss-cn-beijing.aliyuncs.com/images/0.0.210/1572261283991-f8e35f4d-6997-4a02-9704-843ee8f97464.png)
@@ -26,13 +30,21 @@
 
     ![markdown](https://img.alicdn.com/tfs/TB1yL3taUgQMeJjy0FeXXXOEVXa-492-380.png)
 
-## Usage
+## Install
 
-### Use as module
+### binary
+
+Go to [releases](https://github.com/CatchZeng/dingtalk/releases/) to download the binary executable file of the corresponding platform, and then add it to the PATH environment variable.
+
+### install with go get
 
 ```shell
 go get github.com/CatchZeng/dingtalk
 ```
+
+## Usage
+
+### Use as module
 
 ```go
 package main

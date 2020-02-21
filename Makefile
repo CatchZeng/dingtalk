@@ -12,6 +12,14 @@ mod:
 	go mod tidy
 build:
 	go build -o dingtalk main.go
+build-mac:
+	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o dingtalk main.go
+build-linux:
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o dingtalk main.go
+build-win:
+	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o dingtalk.exe main.go
+build-win32:
+	CGO_ENABLED=0 GOOS=windows GOARCH=386 go build -o dingtalk.exe main.go
 utest:
 	go test -coverpkg=./... -coverprofile=coverage.data ./...
 help:
