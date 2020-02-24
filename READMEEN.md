@@ -2,7 +2,7 @@
 
 [中文](https://github.com/CatchZeng/dingtalk/blob/master/README.md)
 
-> DingTalk (dingding) is the go implementation of the DingTalk robot. Support `signature` security settings,`chain syntax` to create messages, support text, link, markdown message types.
+> DingTalk (dingding) is the go implementation of the DingTalk robot. Support `Docker`, `command line` mode, `module` mode, `signature security` settings, `chain syntax` to create messages, support `text, link, markdown` message types.
 
 ## Doc
 
@@ -34,11 +34,17 @@
 
 ## Install
 
+## with Docker
+
+```shell
+docker pull catchzeng/dingtalk
+```
+
 ### binary
 
 Go to [releases](https://github.com/CatchZeng/dingtalk/releases/) to download the binary executable file of the corresponding platform, and then add it to the PATH environment variable.
 
-### install with go get
+### with go get
 
 ```shell
 go get github.com/CatchZeng/dingtalk

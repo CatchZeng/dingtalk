@@ -2,7 +2,7 @@
 
 [English](https://github.com/CatchZeng/dingtalk/blob/master/READMEEN.md)
 
-> DingTalk(dingding) 是钉钉机器人的 go 实现。支持`加签`安全设置，支持`链式语法`创建消息，支持文本、链接、Markdown 消息类型
+> DingTalk(dingding) 是钉钉机器人的 go 实现。支持 `Docker`、`命令行`模式，`module` 模式，支持`加签`安全设置，支持`链式语法`创建消息，支持`文本、链接、Markdown` 消息类型
 
 ## 文档
 
@@ -33,6 +33,12 @@
   ![markdown](https://img.alicdn.com/tfs/TB1yL3taUgQMeJjy0FeXXXOEVXa-492-380.png)
 
 ## 安装
+
+## Docker 安装
+
+```shell
+docker pull catchzeng/dingtalk
+```
 
 ### 二进制安装
 
