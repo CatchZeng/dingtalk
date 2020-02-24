@@ -10,9 +10,11 @@
 
 ## 特性
 
-- [x] 支持[命令行模式](https://github.com/CatchZeng/dingtalk#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7)
+- [x] 支持[Docker](https://github.com/CatchZeng/dingtalk#Docker)
 
 - [x] 支持[module](https://github.com/CatchZeng/dingtalk#%E4%BD%9C%E4%B8%BA-module)
+
+- [x] 支持[命令行模式](https://github.com/CatchZeng/dingtalk#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7)
 
 - [x] 支持加签
 
@@ -43,6 +45,12 @@ go get github.com/CatchZeng/dingtalk
 ```
 
 ## 使用方法
+
+### Docker
+
+```shell
+docker run catchzeng/dingtalk dingtalk text -t 1c53e149ba5de6597cxxxxxx0e901fdxxxxxx80b8ac141e4a75afdc44c85ca4f -s SECb90923e19e58b466481e9e7b7a5bxxxxxx4531axxxxxxad3967fb29f0eae5c68 -c "docker test"
+```
 
 ### 作为 module
 
