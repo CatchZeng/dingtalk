@@ -72,7 +72,7 @@ docker run catchzeng/dingtalk dingtalk text -t 1c53e149ba5de6597cxxxxxx0e901fdxx
 
 ### Jenkinsfile
 
-```json
+```shell
 pipeline {
     agent {
         docker {
