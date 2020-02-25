@@ -2,7 +2,7 @@
 
 [中文](https://github.com/CatchZeng/dingtalk/blob/master/README.md)
 
-> DingTalk (dingding) is the go implementation of the DingTalk robot. Support `Docker`, `command line` mode, `module` mode, `signature security` settings, `chain syntax` to create messages, support `text, link, markdown、ActionCard、FeedCard` message types.
+> DingTalk (dingding) is the go implementation of the DingTalk robot. Support `Docker`, `Jenkinsfile`,`command line` mode, `module` mode, `signature security` settings, `chain syntax` to create messages, support `text, link, markdown、ActionCard、FeedCard` message types.
 
 ## Doc
 
@@ -11,6 +11,8 @@
 ## Feature
 
 - [x] Support [Docker](https://github.com/CatchZeng/dingtalk#Docker)
+
+- [x] Support [Jenkinsfile](https://github.com/CatchZeng/dingtalk#Jenkinsfile)
 
 - [x] Support [module](https://github.com/CatchZeng/dingtalk/blob/master/READMEEN.md#use-as-module)
 
@@ -66,6 +68,29 @@ go get github.com/CatchZeng/dingtalk
 
 ```shell
 docker run catchzeng/dingtalk dingtalk text -t 1c53e149ba5de6597cxxxxxx0e901fdxxxxxx80b8ac141e4a75afdc44c85ca4f -s SECb90923e19e58b466481e9e7b7a5bxxxxxx4531axxxxxxad3967fb29f0eae5c68 -c "docker test"
+```
+
+### Jenkinsfile
+
+```json
+pipeline {
+    agent {
+        docker {
+            image 'catchzeng/dingtalk:latest'
+        }
+    }
+    environment {
+        DING_TOKEN = '1c53e149ba5de6597cxxxxxx0e901fdxxxxxx80b8ac141e4a75afdc44c85ca4f'
+        DING_SECRET = 'SECb90923e19e58b466481e9e7b7a5bxxxxxx4531axxxxxxad3967fb29f0eae5c68'
+    }
+    stages {
+        stage('notify') {
+            steps {
+                sh 'dingtalk link -t ${DING_TOKEN} -s ${DING_SECRET} -i "标题" -e "信息" -u "https://catchzeng.com/" -p "https://catchzeng.com/img/avatar-hux.jpg" -a'
+            }
+        }
+    }
+}
 ```
 
 ### Use as module
