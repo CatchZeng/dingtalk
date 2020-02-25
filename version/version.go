@@ -8,9 +8,9 @@ import (
 
 var (
 	// Version for dingtalk
-	Version = "1.0.0"
+	Version = "1.1.0"
 	// BuildTime for dingtalk
-	BuildTime = "2020/02/21"
+	BuildTime = "2020/02/25"
 )
 
 // Options for dingtalk

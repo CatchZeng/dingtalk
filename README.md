@@ -2,7 +2,7 @@
 
 [English](https://github.com/CatchZeng/dingtalk/blob/master/READMEEN.md)
 
-> DingTalk(dingding) 是钉钉机器人的 go 实现。支持 `Docker`、`命令行`模式，`module` 模式，支持`加签`安全设置，支持`链式语法`创建消息，支持`文本、链接、Markdown` 消息类型
+> DingTalk(dingding) 是钉钉机器人的 go 实现。支持 `Docker`、`命令行`模式，`module` 模式，支持`加签`安全设置，支持`链式语法`创建消息，支持`文本、链接、Markdown、ActionCard、FeedCard` 消息类型
 
 ## 文档
 
@@ -31,6 +31,16 @@
 - [x] Markdown 消息
 
   ![markdown](https://img.alicdn.com/tfs/TB1yL3taUgQMeJjy0FeXXXOEVXa-492-380.png)
+
+- [x] ActionCard 消息
+
+  ![ActionCard1](https://img.alicdn.com/tfs/TB1nhWCiBfH8KJjy1XbXXbLdXXa-547-379.png)
+
+  ![ActionCard2](https://dingtalkdoc.oss-cn-beijing.aliyuncs.com/images/0.0.210/1570679939723-c1fb7861-5bcb-4c30-9e1b-033932f6b72f.png)
+
+- [x] FeedCard 消息
+
+  ![ActionCard1](http://img01.taobaocdn.com/top/i1/LB1R2evQVXXXXXDapXXXXXXXXXX)
 
 ## 安装
 
@@ -86,7 +96,7 @@ func main() {
 #### Demo
 
 ```shell
-dingtalk text -t 1c53e149ba5de6597cxxxxxx0e901fdxxxxxx80b8ac141e4a75afdc44c85ca4f -s SECb90923e19e58b466481e9e7b7a5bxxxxxx4531axxxxxxad3967fb29f0eae5c68 -c "测试命令行 & at 某个人" -m ["177010xxx60"]
+dingtalk text -t 1c53e149ba5de6597cxxxxxx0e901fdxxxxxx80b8ac141e4a75afdc44c85ca4f -s SECb90923e19e58b466481e9e7b7a5bxxxxxx4531axxxxxxad3967fb29f0eae5c68 -c "测试命令行 & at 某个人" -m "177010xxx60","177010xxx61"
 ```
 
 #### Help
@@ -101,17 +111,20 @@ dingtalk text -t 1c53e149ba5de6597cxxxxxx0e901fdxxxxxx80b8ac141e4a75afdc44c85ca4
     dingtalk [command]
 
   Available Commands:
+    actionCard  send actionCard message with DingTalk robot
+    feedCard    send feedCard message with DingTalk robot
     help        Help about any command
     link        send link message with DingTalk robot
     markdown    send markdown message with DingTalk robot
     text        send text message with DingTalk robot
+    version     dingtalk version
 
   Flags:
-    -m, --atMobiles stringArray   atMobiles
-    -h, --help                    help for dingtalk
-    -a, --isAtAll                 isAtAll
-    -s, --secret string           secret
-    -t, --token string            access_token
+    -m, --atMobiles strings   atMobiles
+    -h, --help                help for dingtalk
+    -a, --isAtAll             isAtAll
+    -s, --secret string       secret
+    -t, --token string        access_token
 
   Use "dingtalk [command] --help" for more information about a command.
   ```
@@ -130,7 +143,7 @@ dingtalk text -t 1c53e149ba5de6597cxxxxxx0e901fdxxxxxx80b8ac141e4a75afdc44c85ca4
     -h, --help             help for text
 
   Global Flags:
-    -m, --atMobiles stringArray   atMobiles
+    -m, --atMobiles strings       atMobiles
     -a, --isAtAll                 isAtAll
     -s, --secret string           secret
     -t, --token string            access_token
@@ -153,7 +166,7 @@ dingtalk text -t 1c53e149ba5de6597cxxxxxx0e901fdxxxxxx80b8ac141e4a75afdc44c85ca4
     -i, --title string        title
 
   Global Flags:
-    -m, --atMobiles stringArray   atMobiles
+    -m, --atMobiles strings       atMobiles
     -a, --isAtAll                 isAtAll
     -s, --secret string           secret
     -t, --token string            access_token
@@ -174,8 +187,57 @@ dingtalk text -t 1c53e149ba5de6597cxxxxxx0e901fdxxxxxx80b8ac141e4a75afdc44c85ca4
     -i, --title string   title
 
   Global Flags:
-    -m, --atMobiles stringArray   atMobiles
+    -m, --atMobiles strings       atMobiles
     -a, --isAtAll                 isAtAll
     -s, --secret string           secret
     -t, --token string            access_token
+  ```
+
+- actionCard
+
+  ```shell
+  $ dingtalk actionCard -h
+  send actionCard message with DingTalk robot
+
+  Usage:
+    dingtalk actionCard [flags]
+
+  Flags:
+    -c, --btnActionURLs strings   btnActionURLs
+    -o, --btnOrientation string   btnOrientation
+    -b, --btnTitles strings       btnTitles
+    -h, --help                    help for actionCard
+    -d, --hideAvatar string       hideAvatar
+    -n, --singleTitle string      singleTitle
+    -u, --singleURL string        singleURL
+    -e, --text string             text
+    -i, --title string            title
+
+  Global Flags:
+    -m, --atMobiles strings   atMobiles
+    -a, --isAtAll             isAtAll
+    -s, --secret string       secret
+    -t, --token string        access_token
+  ```
+
+- feedCard
+
+  ```shell
+  dingtalk feedCard -h
+  send feedCard message with DingTalk robot
+
+  Usage:
+    dingtalk feedCard [flags]
+
+  Flags:
+    -h, --help                  help for feedCard
+    -u, --messageURLs strings   messageURLs
+    -p, --picURLs strings       picURLs
+    -i, --titles strings        titles
+
+  Global Flags:
+    -m, --atMobiles strings   atMobiles
+    -a, --isAtAll             isAtAll
+    -s, --secret string       secret
+    -t, --token string        access_token
   ```

@@ -5,7 +5,7 @@ export GOPROXY=https://goproxy.cn,direct
 export GOSUMDB=off
 
 APP_NAME=dingtalk
-APP_VERSION=1.0.0
+APP_VERSION=1.1.0
 IMAGE_NAME="catchzeng/${APP_NAME}:${APP_VERSION}"
 IMAGE_LATEST="catchzeng/${APP_NAME}:latest"
 

@@ -41,5 +41,5 @@ func init() {
 	rootCmd.PersistentFlags().StringVarP(&rootVars.accessToken, "token", "t", "", "access_token")
 	rootCmd.PersistentFlags().StringVarP(&rootVars.secret, "secret", "s", "", "secret")
 	rootCmd.PersistentFlags().BoolVarP(&rootVars.isAtAll, "isAtAll", "a", false, "isAtAll")
-	rootCmd.PersistentFlags().StringArrayVarP(&rootVars.atMobiles, "atMobiles", "m", []string{}, "atMobiles")
+	rootCmd.PersistentFlags().StringSliceVarP(&rootVars.atMobiles, "atMobiles", "m", []string{}, "atMobiles")
 }
