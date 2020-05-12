@@ -40,7 +40,7 @@ func (d *DingTalk) Send(message message.Message) (Response, error) {
 		return res, err
 	}
 
-	req, err := http.NewRequest("POST", pushURL, bytes.NewReader(reqBytes))
+	req, err := http.NewRequest(http.MethodPost, pushURL, bytes.NewReader(reqBytes))
 	if err != nil {
 		return res, err
 	}
@@ -53,6 +53,7 @@ func (d *DingTalk) Send(message message.Message) (Response, error) {
 	if err != nil {
 		return res, err
 	}
+	defer resp.Body.Close()
 
 	resultByte, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
