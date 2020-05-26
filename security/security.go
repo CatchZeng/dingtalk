@@ -24,6 +24,12 @@ var dingTalkURL url.URL = url.URL{
 // If no signature is set, the secret is set to ""
 // 如果没有加签，secret 设置为 "" 即可
 func GetDingTalkURL(accessToken string, secret string) (string, error) {
+	timestamp := strconv.FormatInt(time.Now().Unix()*1000, 10)
+	return GetDingTalkURLWithTimestamp(timestamp, accessToken, secret)
+}
+
+// GetDingTalkURLWithTimestamp get DingTalk URL with timestamp & accessToken & secret
+func GetDingTalkURLWithTimestamp(timestamp string, accessToken string, secret string) (string, error) {
 	dtu := dingTalkURL
 	value := url.Values{}
 	value.Set("access_token", accessToken)
@@ -33,7 +39,6 @@ func GetDingTalkURL(accessToken string, secret string) (string, error) {
 		return dtu.String(), nil
 	}
 
-	timestamp := strconv.FormatInt(time.Now().Unix()*1000, 10)
 	sign, err := sign(timestamp, secret)
 	if err != nil {
 		dtu.RawQuery = value.Encode()

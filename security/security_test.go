@@ -3,8 +3,7 @@ package security
 import "testing"
 
 func TestGetDingTalkURL(t *testing.T) {
-	// mock timestamp
-	timestamp = "1582163555000"
+	timestamp := "1582163555000"
 
 	type args struct {
 		accessToken string
@@ -36,7 +35,7 @@ func TestGetDingTalkURL(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got, err := GetDingTalkURL(tt.args.accessToken, tt.args.secret)
+			got, err := GetDingTalkURLWithTimestamp(timestamp, tt.args.accessToken, tt.args.secret)
 			if (err != nil) != tt.wantErr {
 				t.Errorf("GetDingTalkURL() error = %v, wantErr %v", err, tt.wantErr)
 				return
