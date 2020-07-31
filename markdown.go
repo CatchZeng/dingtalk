@@ -1,4 +1,4 @@
-package message
+package dingtalk
 
 import "encoding/json"
 

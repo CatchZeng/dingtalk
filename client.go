@@ -1,21 +1,27 @@
-package client
+package dingtalk
 
 import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/CatchZeng/dingtalk/internal/security"
 	"io/ioutil"
 	"net/http"
 	"time"
-
-	"github.com/CatchZeng/dingtalk/message"
-	"github.com/CatchZeng/dingtalk/security"
 )
 
-// DingTalk dingtalk client
-type DingTalk struct {
+// Client dingtalk client
+type Client struct {
 	AccessToken string
 	Secret      string
+}
+
+// NewClient new dingtalk client
+func NewClient(accessToken, secret string) *Client {
+	return &Client{
+		AccessToken: accessToken,
+		Secret: secret,
+	}
 }
 
 // Response response struct
@@ -27,7 +33,7 @@ type Response struct {
 const httpTimoutSecond = time.Duration(30) * time.Second
 
 // Send message
-func (d *DingTalk) Send(message message.Message) (Response, error) {
+func (d *Client) Send(message Message) (Response, error) {
 	res := Response{}
 
 	reqBytes, err := message.ToByte()

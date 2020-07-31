@@ -101,18 +101,16 @@ package main
 import (
     "log"
 
-    "github.com/CatchZeng/dingtalk/client"
-    "github.com/CatchZeng/dingtalk/message"
+    "github.com/CatchZeng/dingtalk"
 )
 
 func main() {
-    dingTalk := client.DingTalk{
-        AccessToken: "1c53e149ba5de6597cxxxxxx0e901fdxxxxxx80b8ac141e4a75afdc44c85ca4f",
-        Secret:      "SECb90923e19e58b466481e9e7b7a5bxxxxxx4531axxxxxxad3967fb29f0eae5c68",
-    }
+	accessToken := "1c53e149ba5de6597cxxxxxx0e901fdxxxxxx80b8ac141e4a75afdc44c85ca4f" 
+    secret := "SECb90923e19e58b466481e9e7b7a5bxxxxxx4531axxxxxxad3967fb29f0eae5c68"
+    client := dingtalk.NewClient(accessToken, secret)
 
-    msg := message.NewTextMessage().SetContent("测试文本&at 某个人").SetAt([]string{"177010xxx60"}, false)
-    dingTalk.Send(msg)
+    msg := dingtalk.NewTextMessage().SetContent("测试文本&at 某个人").SetAt([]string{"177010xxx60"}, false)
+    client.Send(msg)
 }
 ```
 

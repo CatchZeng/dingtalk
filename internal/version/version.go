@@ -8,9 +8,9 @@ import (
 
 var (
 	// Version for dingtalk
-	Version = "1.1.1"
+	Version = "2.0.0"
 	// BuildTime for dingtalk
-	BuildTime = "2020/05/26"
+	BuildTime = "2020/07/31"
 )
 
 // Options for dingtalk
@@ -45,7 +45,7 @@ func GetVersion() string {
 // GetVersionWithOps get version string with versionOptions
 func GetVersionWithOps(options Options) string {
 	var doc bytes.Buffer
-	template, _ := template.New("version").Parse(versionTemplate)
-	template.Execute(&doc, options)
+	tpl, _ := template.New("version").Parse(versionTemplate)
+	_ = tpl.Execute(&doc, options)
 	return doc.String()
 }
