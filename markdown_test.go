@@ -1,4 +1,4 @@
-package message
+package dingtalk
 
 import (
 	"reflect"
@@ -7,7 +7,7 @@ import (
 
 func TestMarkdownMessage_ToByte(t *testing.T) {
 	msg := NewMarkdownMessage()
-	msg.ToByte()
+	_, _ = msg.ToByte()
 	if msg.MsgType != MsgTypeMarkdown {
 		t.Errorf("MarkdownMessage.ToByte() type error")
 	}

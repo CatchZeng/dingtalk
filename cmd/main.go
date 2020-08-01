@@ -1,12 +1,11 @@
 package main
 
 import (
+	"github.com/CatchZeng/dingtalk/cmd/dingtalk"
 	"log"
-
-	"github.com/CatchZeng/dingtalk/cmd"
 )
 
 func main() {
 	log.SetFlags(0)
-	cmd.Execute()
+	dingtalk.Execute()
 }

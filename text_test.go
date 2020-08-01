@@ -1,4 +1,4 @@
-package message
+package dingtalk
 
 import (
 	"reflect"
@@ -7,7 +7,7 @@ import (
 
 func TestTextMessage_ToByte(t *testing.T) {
 	msg := NewTextMessage()
-	msg.ToByte()
+	_, _ = msg.ToByte()
 	if msg.MsgType != MsgTypeText {
 		t.Errorf("TextMessage.ToByte() type error")
 	}

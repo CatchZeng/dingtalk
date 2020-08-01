@@ -1,4 +1,4 @@
-package message
+package dingtalk
 
 // MsgType message type enum
 type MsgType string

@@ -1,6 +1,8 @@
 package security
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestGetDingTalkURL(t *testing.T) {
 	timestamp := "1582163555000"
