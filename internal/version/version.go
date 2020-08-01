@@ -10,7 +10,7 @@ var (
 	// Version for dingtalk
 	Version = "2.0.0"
 	// BuildTime for dingtalk
-	BuildTime = "2020/07/31"
+	BuildTime = "2020/08/01"
 )
 
 // Options for dingtalk

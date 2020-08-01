@@ -14,6 +14,8 @@ fmt:
 	gofmt -w .
 mod:
 	go mod tidy
+lint:
+	golangci-lint run
 build:
 	go build -o dingtalk cmd/main.go
 build-mac:
@@ -25,8 +27,8 @@ build-win:
 build-win32:
 	CGO_ENABLED=0 GOOS=windows GOARCH=386 go build -o dingtalk.exe cmd/main.go
 build-docker:
-	echo ${IMAGE_NAME}; \
-	docker build -t ${IMAGE_NAME} -f Dockerfile .;
+	echo ${IMAGE_NAME}
+	sh build/package/build.sh ${IMAGE_NAME}
 push-docker: build-docker
 	docker tag ${IMAGE_NAME} ${IMAGE_LATEST};
 	docker push ${IMAGE_NAME};

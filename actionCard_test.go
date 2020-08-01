@@ -7,7 +7,7 @@ import (
 
 func TestActionCardMessage_ToByte(t *testing.T) {
 	msg := NewActionCardMessage()
-	msg.ToByte()
+	_, _ = msg.ToByte()
 	if msg.MsgType != MsgTypeActionCard {
 		t.Errorf("ActionCardMessage.ToByte() type error")
 	}

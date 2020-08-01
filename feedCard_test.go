@@ -7,7 +7,7 @@ import (
 
 func TestFeedCardMessage_ToByte(t *testing.T) {
 	msg := NewFeedCardMessage()
-	msg.ToByte()
+	_, _ = msg.ToByte()
 	if msg.MsgType != MsgTypeFeedCard {
 		t.Errorf("FeedCardMessage.ToByte() type error")
 	}

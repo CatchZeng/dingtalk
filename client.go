@@ -20,7 +20,7 @@ type Client struct {
 func NewClient(accessToken, secret string) *Client {
 	return &Client{
 		AccessToken: accessToken,
-		Secret: secret,
+		Secret:      secret,
 	}
 }
 

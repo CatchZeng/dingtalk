@@ -7,7 +7,7 @@ import (
 
 func TestLinkMessage_ToByte(t *testing.T) {
 	msg := NewLinkMessage()
-	msg.ToByte()
+	_, _ = msg.ToByte()
 	if msg.MsgType != MsgTypeLink {
 		t.Errorf("LinkMessage.ToByte() type error")
 	}
