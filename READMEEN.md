@@ -1,6 +1,9 @@
 # dingtalk
 
 ![Go](https://github.com/CatchZeng/dingtalk/workflows/Go/badge.svg)
+[![Go Report Card](https://goreportcard.com/badge/github.com/CatchZeng/dingtalk)](https://goreportcard.com/report/github.com/CatchZeng/dingtalk)
+[![Release](https://img.shields.io/github/release/CatchZeng/dingtalk.svg)](https://github.com/CatchZeng/dingtalk/releases)
+[![GoDoc](https://godoc.org/github.com/CatchZeng/dingtalk?status.svg)](https://pkg.go.dev/github.com/CatchZeng/dingtalk?tab=doc)
 
 [中文](https://github.com/CatchZeng/dingtalk/blob/master/README.md)
 
