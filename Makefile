@@ -16,16 +16,26 @@ mod:
 	go mod tidy
 lint:
 	golangci-lint run
+.PHONY: build
 build:
 	go build -o dingtalk cmd/main.go
 build-mac:
 	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o dingtalk cmd/main.go
+	zip dingtalk-darwin-amd64.zip dingtalk
 build-linux:
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o dingtalk cmd/main.go
+	zip dingtalk-linux-amd64.zip dingtalk
 build-win:
 	CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o dingtalk.exe cmd/main.go
+	zip dingtalk-windows-amd64.zip dingtalk.exe
 build-win32:
 	CGO_ENABLED=0 GOOS=windows GOARCH=386 go build -o dingtalk.exe cmd/main.go
+	zip dingtalk-windows-386.zip dingtalk.exe
+build-release:
+	make build-mac
+	make build-linux
+	make build-win
+	make build-win32
 build-docker:
 	echo ${IMAGE_NAME}
 	sh build/package/build.sh ${IMAGE_NAME}
