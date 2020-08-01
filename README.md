@@ -1,5 +1,7 @@
 # dingtalk
 
+![Go](https://github.com/CatchZeng/dingtalk/workflows/Go/badge.svg)
+
 [English](https://github.com/CatchZeng/dingtalk/blob/master/READMEEN.md)
 
 > DingTalk(dingding) 是钉钉机器人的 go 实现。支持 `Docker`、`Jenkinsfile`、`命令行`模式，`module` 模式，支持`加签`安全设置，支持`链式语法`创建消息，支持`文本、链接、Markdown、ActionCard、FeedCard` 消息类型
