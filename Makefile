@@ -45,7 +45,7 @@ push-docker: build-docker
 	docker push ${IMAGE_LATEST};
 .PHONY: test
 test:
-	go test -coverpkg=./... -coverprofile=coverage.data ./...
+	go test -race -coverprofile=coverage.txt -covermode=atomic
 help:
 	@echo "fmt - go format"
 	@echo "mod - go mod tidy"

@@ -28,3 +28,6 @@ jobs:
 
     - name: Test
       run: make test
+
+    - name: codecoe
+      run: bash <(curl -s https://codecov.io/bash)
