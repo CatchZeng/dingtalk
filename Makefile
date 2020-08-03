@@ -16,6 +16,8 @@ mod:
 	go mod tidy
 lint:
 	golangci-lint run
+mock:
+	sh scripts/mock.sh
 .PHONY: build
 build:
 	go build -o dingtalk cmd/main.go

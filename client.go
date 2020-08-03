@@ -4,10 +4,11 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/CatchZeng/dingtalk/internal/security"
 	"io/ioutil"
 	"net/http"
 	"time"
+
+	"github.com/CatchZeng/dingtalk/internal/security"
 )
 
 // Client dingtalk client
