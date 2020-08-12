@@ -60,15 +60,15 @@ func TestClient_Send(t *testing.T) {
 		}
 	})
 
-	t.Run("security.GetDingTalkURL return error", func(t *testing.T) {
+	t.Run("security.URL return error", func(t *testing.T) {
 		c := &Client{
 			AccessToken: "dasfsafewfewfwfewf",
-			Secret: "ewfewfwfwefwafew",
+			Secret:      "ewfewfwfwefwafew",
 		}
 
 		messgae.EXPECT().ToByte().Return([]byte{}, nil)
-		monkey.Patch(security.GetDingTalkURL, func(accessToken string, secret string) (string, error) {
-			return "", errors.New("GetDingTalkURL error")
+		monkey.Patch(security.URL, func(accessToken string, secret string) (string, error) {
+			return "", errors.New("URL error")
 		})
 
 		if _, err := c.Send(messgae); err == nil {
@@ -76,15 +76,14 @@ func TestClient_Send(t *testing.T) {
 		}
 	})
 
-
 	t.Run("http.NewRequest return error", func(t *testing.T) {
 		c := &Client{
 			AccessToken: "dasfsafewfewfwfewf",
-			Secret: "ewfewfwfwefwafew",
+			Secret:      "ewfewfwfwefwafew",
 		}
 
 		messgae.EXPECT().ToByte().Return([]byte{}, nil)
-		monkey.Patch(security.GetDingTalkURL, func(accessToken string, secret string) (string, error) {
+		monkey.Patch(security.URL, func(accessToken string, secret string) (string, error) {
 			return "https://oapi.dingtalk.com/robot/send?access_token=ewfewfwfwefwafew", nil
 		})
 

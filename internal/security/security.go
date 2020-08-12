@@ -6,6 +6,7 @@ import (
 	"encoding/base64"
 	"fmt"
 	"io"
+	"math"
 	"net/url"
 	"strconv"
 	"time"
@@ -20,16 +21,16 @@ var dingTalkURL url.URL = url.URL{
 	Path:   "robot/send",
 }
 
-// GetDingTalkURL get DingTalk URL with accessToken & secret
+// URL get DingTalk URL with accessToken & secret
 // If no signature is set, the secret is set to ""
 // 如果没有加签，secret 设置为 "" 即可
-func GetDingTalkURL(accessToken string, secret string) (string, error) {
+func URL(accessToken string, secret string) (string, error) {
 	timestamp := strconv.FormatInt(time.Now().Unix()*1000, 10)
-	return GetDingTalkURLWithTimestamp(timestamp, accessToken, secret)
+	return URLWithTimestamp(timestamp, accessToken, secret)
 }
 
-// GetDingTalkURLWithTimestamp get DingTalk URL with timestamp & accessToken & secret
-func GetDingTalkURLWithTimestamp(timestamp string, accessToken string, secret string) (string, error) {
+// URLWithTimestamp get DingTalk URL with timestamp & accessToken & secret
+func URLWithTimestamp(timestamp string, accessToken string, secret string) (string, error) {
 	dtu := dingTalkURL
 	value := url.Values{}
 	value.Set("access_token", accessToken)
@@ -49,6 +50,25 @@ func GetDingTalkURLWithTimestamp(timestamp string, accessToken string, secret st
 	value.Set("sign", sign)
 	dtu.RawQuery = value.Encode()
 	return dtu.String(), nil
+}
+
+// https://ding-doc.dingtalk.com/doc#/serverapi2/elzz1p
+func Validate(signStr, timestamp, secret string) (bool, error) {
+	t, err := strconv.ParseInt(timestamp, 10, 64)
+	if err != nil {
+		return false, err
+	}
+
+	timeGap := time.Now().Sub(time.Unix(t, 0))
+	if math.Abs(timeGap.Hours()) > 1 {
+		return false, fmt.Errorf("specified timestamp is expired")
+	}
+
+	if ourSign, err := sign(timestamp, secret); err != nil {
+		return false, err
+	} else {
+		return ourSign == signStr, nil
+	}
 }
 
 func sign(timestamp string, secret string) (string, error) {

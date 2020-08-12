@@ -42,7 +42,7 @@ func (d *Client) Send(message Message) (Response, error) {
 		return res, err
 	}
 
-	pushURL, err := security.GetDingTalkURL(d.AccessToken, d.Secret)
+	pushURL, err := security.URL(d.AccessToken, d.Secret)
 	if err != nil {
 		return res, err
 	}
