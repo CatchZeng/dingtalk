@@ -4,7 +4,6 @@ import (
 	"github.com/mitchellh/go-homedir"
 	"github.com/spf13/viper"
 	"log"
-	"os"
 	"path"
 )
 
@@ -13,8 +12,7 @@ func InitConfig() {
 	// Find home directory.
 	home, err := homedir.Dir()
 	if err != nil {
-		log.Println(err)
-		os.Exit(1)
+		log.Panic(err)
 	}
 
 	// Search configs in home directory with name ".dingtalk" (without extension).

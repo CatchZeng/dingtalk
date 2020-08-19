@@ -16,6 +16,9 @@ mod:
 	go mod tidy
 lint:
 	golangci-lint run
+.PHONY: test
+test:
+	sh scripts/test.sh
 mock:
 	sh scripts/mock.sh
 .PHONY: build
@@ -46,12 +49,11 @@ push-docker: build-docker
 	docker tag ${IMAGE_NAME} ${IMAGE_LATEST};
 	docker push ${IMAGE_NAME};
 	docker push ${IMAGE_LATEST};
-.PHONY: test
-test:
-	go test -race -coverprofile=coverage.txt -covermode=atomic
 help:
 	@echo "fmt - go format"
 	@echo "mod - go mod tidy"
+	@echo "lint - run golangci-lint"
+	@echo "test - unit test"
 	@echo "build - build binary"
 	@echo "build-mac - build mac binary"
 	@echo "build-linux - build linux amd64 binary"
@@ -59,4 +61,3 @@ help:
 	@echo "build-win32 - build win 386 binary"
 	@echo "build-docker - build docker image"
 	@echo "push-docker - push docker image to docker hub"
-	@echo "test - unit test"
