@@ -8,24 +8,24 @@ import (
 
 var textCmd = &cobra.Command{
 	Use:   "text",
-	Short: "send text message with Client robot",
-	Long:  `send text message with Client robot`,
+	Short: "send text message with DingTalk robot",
+	Long:  `send text message with DingTalk robot`,
 	Args:  cobra.MinimumNArgs(0),
 	Run: func(_ *cobra.Command, args []string) {
-		if !CheckToken() {
-			log.L(log.Red, "access_token can not be empty")
-			return
-		}
-
 		if len(textVars.content) < 1 {
 			log.L(log.Red, "content can not be empty")
 			return
 		}
 
-		client := dingtalk.NewClient(rootVars.accessToken, rootVars.secret)
+		client, err := newClient()
+		if err != nil {
+			log.L(log.Red, err.Error())
+			return
+		}
+
 		msg := dingtalk.NewTextMessage().
 			SetContent(textVars.content).
-			SetAt(rootVars.atMobiles, rootVars.isAtAll)
+			SetAt(atMobiles, isAtAll)
 		if _, err := client.Send(msg); err != nil {
 			log.L(log.Red, err.Error())
 		}

@@ -2,6 +2,11 @@ package dingtalk
 
 import (
 	"fmt"
+	"github.com/CatchZeng/dingtalk"
+	"github.com/CatchZeng/dingtalk/configs"
+	"errors"
+	"github.com/spf13/viper"
+	"log"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -22,24 +27,57 @@ func Execute() {
 	}
 }
 
-// CheckToken check token
-func CheckToken() bool {
-	return len(rootVars.accessToken) > 0
+func newClient() (*dingtalk.Client, error) {
+	token := getAccessToken()
+	secret := getSecret()
+
+	if len(token) < 1 {
+		return nil, errors.New("access_token can not be empty")
+	}
+	client := dingtalk.NewClient(token, secret)
+	return client, nil
 }
 
-// RootVars struct
-type RootVars struct {
-	accessToken string
-	secret      string
-	isAtAll     bool
-	atMobiles   []string
+func getAccessToken() string {
+	if len(accessToken) > 0 {
+		return accessToken
+	}
+
+	value, err := configs.GetConfig(configs.AccessToken)
+	if err == nil {
+		return value
+	}
+	return ""
 }
 
-var rootVars RootVars
+func getSecret() string {
+	if len(secret) > 0 {
+		return secret
+	}
+
+	value, err := configs.GetConfig(configs.Secret)
+	if err == nil {
+		return value
+	}
+	return ""
+}
+
+var accessToken, secret string
+var isAtAll bool
+var atMobiles []string
 
 func init() {
-	rootCmd.PersistentFlags().StringVarP(&rootVars.accessToken, "token", "t", "", "access_token")
-	rootCmd.PersistentFlags().StringVarP(&rootVars.secret, "secret", "s", "", "secret")
-	rootCmd.PersistentFlags().BoolVarP(&rootVars.isAtAll, "isAtAll", "a", false, "isAtAll")
-	rootCmd.PersistentFlags().StringSliceVarP(&rootVars.atMobiles, "atMobiles", "m", []string{}, "atMobiles")
+	cobra.OnInitialize(configs.InitConfig)
+
+	rootCmd.PersistentFlags().StringVarP(&accessToken, configs.AccessToken, "t", "", configs.AccessToken)
+	rootCmd.PersistentFlags().StringVarP(&secret, configs.Secret, "s", "", configs.Secret)
+	rootCmd.PersistentFlags().BoolVarP(&isAtAll, "isAtAll", "a", false, "isAtAll")
+	rootCmd.PersistentFlags().StringSliceVarP(&atMobiles, "atMobiles", "m", []string{}, "atMobiles")
+
+	if err := viper.BindPFlag(configs.AccessToken, rootCmd.PersistentFlags().Lookup(configs.AccessToken)); err != nil {
+		log.Print(err)
+	}
+	if err := viper.BindPFlag(configs.Secret, rootCmd.PersistentFlags().Lookup(configs.Secret)); err != nil {
+		log.Print(err)
+	}
 }

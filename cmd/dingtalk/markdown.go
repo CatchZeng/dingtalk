@@ -8,15 +8,10 @@ import (
 
 var markdownCmd = &cobra.Command{
 	Use:   "markdown",
-	Short: "send markdown message with Client robot",
-	Long:  `send markdown message with Client robot`,
+	Short: "send markdown message with DingTalk robot",
+	Long:  `send markdown message with DingTalk robot`,
 	Args:  cobra.MinimumNArgs(0),
 	Run: func(_ *cobra.Command, args []string) {
-		if !CheckToken() {
-			log.L(log.Red, "access_token can not be empty")
-			return
-		}
-
 		if len(markdownVars.title) < 1 {
 			log.L(log.Red, "title can not be empty")
 			return
@@ -27,10 +22,15 @@ var markdownCmd = &cobra.Command{
 			return
 		}
 
-		client := dingtalk.NewClient(rootVars.accessToken, rootVars.secret)
+		client, err := newClient()
+		if err != nil {
+			log.L(log.Red, err.Error())
+			return
+		}
+
 		msg := dingtalk.NewMarkdownMessage().
 			SetMarkdown(markdownVars.title, markdownVars.text).
-			SetAt(rootVars.atMobiles, rootVars.isAtAll)
+			SetAt(atMobiles, isAtAll)
 		if _, err := client.Send(msg); err != nil {
 			log.L(log.Red, err.Error())
 		}

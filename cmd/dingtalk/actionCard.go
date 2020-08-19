@@ -8,15 +8,10 @@ import (
 
 var actionCardCmd = &cobra.Command{
 	Use:   "actionCard",
-	Short: "send actionCard message with Client robot",
-	Long:  `send actionCard message with Client robot`,
+	Short: "send actionCard message with DingTalk robot",
+	Long:  `send actionCard message with DingTalk robot`,
 	Args:  cobra.MinimumNArgs(0),
 	Run: func(_ *cobra.Command, args []string) {
-		if !CheckToken() {
-			log.L(log.Red, "access_token can not be empty")
-			return
-		}
-
 		if len(actionCardVars.Title) < 1 {
 			log.L(log.Red, "title can not be empty")
 			return
@@ -41,7 +36,12 @@ var actionCardCmd = &cobra.Command{
 			}
 		}
 
-		client := dingtalk.NewClient(rootVars.accessToken, rootVars.secret)
+		client, err := newClient()
+		if err != nil {
+			log.L(log.Red, err.Error())
+			return
+		}
+
 		msg := dingtalk.NewActionCardMessage()
 		if isOverallJump {
 			msg.SetOverallJump(

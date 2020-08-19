@@ -8,15 +8,10 @@ import (
 
 var linkCmd = &cobra.Command{
 	Use:   "link",
-	Short: "send link message with Client robot",
-	Long:  `send link message with Client robot`,
+	Short: "send link message with DingTalk robot",
+	Long:  `send link message with DingTalk robot`,
 	Args:  cobra.MinimumNArgs(0),
 	Run: func(_ *cobra.Command, args []string) {
-		if !CheckToken() {
-			log.L(log.Red, "access_token can not be empty")
-			return
-		}
-
 		if len(linkVars.title) < 1 {
 			log.L(log.Red, "title can not be empty")
 			return
@@ -32,7 +27,12 @@ var linkCmd = &cobra.Command{
 			return
 		}
 
-		client := dingtalk.NewClient(rootVars.accessToken, rootVars.secret)
+		client, err := newClient()
+		if err != nil {
+			log.L(log.Red, err.Error())
+			return
+		}
+
 		msg := dingtalk.NewLinkMessage().
 			SetLink(linkVars.title, linkVars.text, linkVars.picURL, linkVars.messageURL)
 		if _, err := client.Send(msg); err != nil {

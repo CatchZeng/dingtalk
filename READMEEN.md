@@ -24,6 +24,8 @@
 
 - [x] Support [Command Line Mode](https://github.com/CatchZeng/dingtalk/blob/master/READMEEN.md#use-as-command-line-tool)
 
+- [x] Support [config.yaml](https://github.com/CatchZeng/dingtalk/blob/master/READMEEN.md#config.yaml)
+
 - [x] Support sign
 
   ![sign](https://dingtalkdoc.oss-cn-beijing.aliyuncs.com/images/0.0.210/1572261283991-f8e35f4d-6997-4a02-9704-843ee8f97464.png)
@@ -69,6 +71,15 @@ go get github.com/CatchZeng/dingtalk
 ```
 
 ## Usage
+
+### config.yaml
+
+You can create `config.yaml` under `$/HOME/.dingtalk` and fill in the default values of `access_token` and `secret`.
+
+```yaml
+access_token: "1c53e149ba5de6597cxxxxxx0e901fdxxxxxx80b8ac141e4a75afdc44c85ca4f"
+secret: "SECb90923e19e58b466481e9e7b7a5bxxxxxx4531axxxxxxad3967fb29f0eae5c68"
+```
 
 ### Docker
 

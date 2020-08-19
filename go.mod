@@ -4,7 +4,9 @@ go 1.13
 
 require (
 	bou.ke/monkey v1.0.2
-	github.com/CatchZeng/gutils v0.0.3
+	github.com/CatchZeng/gutils v0.1.4
 	github.com/golang/mock v1.4.4
-	github.com/spf13/cobra v0.0.5
+	github.com/mitchellh/go-homedir v1.1.0
+	github.com/spf13/cobra v1.0.0
+	github.com/spf13/viper v1.7.1
 )

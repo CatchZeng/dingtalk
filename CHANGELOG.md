@@ -1,5 +1,18 @@
 # CHANGELOG
 
+
+## v2.1.0
+
+### Added
+
+- support config.xml
+
+## v2.0.0
+
+### Refactor
+
+- project layout
+
 ## v1.1.1
 
 ### Fixed

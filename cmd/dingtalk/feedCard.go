@@ -8,14 +8,10 @@ import (
 
 var feedCardCmd = &cobra.Command{
 	Use:   "feedCard",
-	Short: "send feedCard message with Client robot",
-	Long:  `send feedCard message with Client robot`,
+	Short: "send feedCard message with DingTalk robot",
+	Long:  `send feedCard message with DingTalk robot`,
 	Args:  cobra.MinimumNArgs(0),
 	Run: func(_ *cobra.Command, args []string) {
-		if !CheckToken() {
-			log.L(log.Red, "access_token can not be empty")
-			return
-		}
 
 		if len(feedCardVars.titles) < 1 || len(feedCardVars.picURLs) < 1 || len(feedCardVars.messageURLs) < 1 {
 			log.L(log.Red, "titles & picURLs & messageURLs can not be empty")
@@ -23,7 +19,11 @@ var feedCardCmd = &cobra.Command{
 		}
 
 		if len(feedCardVars.titles) == len(feedCardVars.picURLs) && len(feedCardVars.picURLs) == len(feedCardVars.messageURLs) {
-			client := dingtalk.NewClient(rootVars.accessToken, rootVars.secret)
+			client, err := newClient()
+			if err != nil {
+				log.L(log.Red, err.Error())
+				return
+			}
 
 			msg := dingtalk.NewFeedCardMessage()
 			for i := 0; i < len(feedCardVars.titles); i++ {

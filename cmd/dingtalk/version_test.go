@@ -2,7 +2,7 @@ package dingtalk
 
 import (
 	"bytes"
-	"github.com/CatchZeng/dingtalk/internal/version"
+	"github.com/CatchZeng/gutils/version"
 	"log"
 	"os"
 	"strings"
@@ -20,7 +20,7 @@ func Test_runVersionCmd(t *testing.T) {
 	runVersionCmd(&cobra.Command{}, []string{})
 	got := buf.String()
 
-	want := version.GetVersion()
+	want := version.Stringify("2.1.0", "2020/08/19")
 
 	if !strings.Contains(got, want) {
 		t.Errorf("runVersionCmd() = %v, want %v", got, want)

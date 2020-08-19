@@ -4,7 +4,7 @@ BASEDIR = $(shell pwd)
 export GO111MODULE=on
 
 APP_NAME=dingtalk
-APP_VERSION=2.0.0
+APP_VERSION=2.1.0
 IMAGE_NAME="catchzeng/${APP_NAME}:${APP_VERSION}"
 IMAGE_LATEST="catchzeng/${APP_NAME}:latest"
 
@@ -20,6 +20,7 @@ mock:
 	sh scripts/mock.sh
 .PHONY: build
 build:
+	rm dingtalk
 	go build -o dingtalk cmd/main.go
 build-mac:
 	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o dingtalk cmd/main.go

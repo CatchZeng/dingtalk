@@ -1,7 +1,7 @@
 package dingtalk
 
 import (
-	"github.com/CatchZeng/dingtalk/internal/version"
+	"github.com/CatchZeng/gutils/version"
 	"log"
 
 	"github.com/spf13/cobra"
@@ -16,7 +16,7 @@ var versionCmd = &cobra.Command{
 }
 
 func runVersionCmd(_ *cobra.Command, _ []string) {
-	v := version.GetVersion()
+	v := version.Stringify("2.1.0", "2020/08/19")
 	log.Println(v)
 }
 

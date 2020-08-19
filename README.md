@@ -24,6 +24,8 @@
 
 - [x] 支持[命令行模式](https://github.com/CatchZeng/dingtalk#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7)
 
+- [x] 支持[配置文件](https://github.com/CatchZeng/dingtalk#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
+
 - [x] 支持加签
 
   ![sign](https://dingtalkdoc.oss-cn-beijing.aliyuncs.com/images/0.0.210/1572261283991-f8e35f4d-6997-4a02-9704-843ee8f97464.png)
@@ -69,6 +71,15 @@ go get github.com/CatchZeng/dingtalk
 ```
 
 ## 使用方法
+
+### 配置文件
+
+可以在 `$/HOME/.dingtalk` 下创建 `config.yaml` 填入 `access_token` 和 `secret` 默认值。
+
+```yaml
+access_token: "1c53e149ba5de6597cxxxxxx0e901fdxxxxxx80b8ac141e4a75afdc44c85ca4f"
+secret: "SECb90923e19e58b466481e9e7b7a5bxxxxxx4531axxxxxxad3967fb29f0eae5c68"
+```
 
 ### Docker
 
