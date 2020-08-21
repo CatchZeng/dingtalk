@@ -1,11 +1,12 @@
 # CHANGELOG
 
-
 ## v2.1.0
 
 ### Added
 
 - support config.xml
+- validate function
+- .editconfig file
 
 ## v2.0.0
 

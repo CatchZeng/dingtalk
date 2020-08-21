@@ -16,7 +16,7 @@ var versionCmd = &cobra.Command{
 }
 
 func runVersionCmd(_ *cobra.Command, _ []string) {
-	v := version.Stringify("2.1.0", "2020/08/19")
+	v := version.Stringify("2.1.0", "2020/08/21")
 	log.Println(v)
 }
 
