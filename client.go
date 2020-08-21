@@ -34,8 +34,8 @@ type Response struct {
 const httpTimoutSecond = time.Duration(30) * time.Second
 
 // Send message
-func (d *Client) Send(message Message) (Response, error) {
-	res := Response{}
+func (d *Client) Send(message Message) (*Response, error) {
+	res := &Response{}
 
 	reqBytes, err := message.ToByte()
 	if err != nil {

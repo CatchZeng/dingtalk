@@ -11,30 +11,32 @@ var markdownCmd = &cobra.Command{
 	Short: "send markdown message with DingTalk robot",
 	Long:  `send markdown message with DingTalk robot`,
 	Args:  cobra.MinimumNArgs(0),
-	Run: func(_ *cobra.Command, args []string) {
-		if len(markdownVars.title) < 1 {
-			log.L(log.Red, "title can not be empty")
-			return
-		}
+	Run:   runMarkdownCmd,
+}
 
-		if len(markdownVars.text) < 1 {
-			log.L(log.Red, "text can not be empty")
-			return
-		}
+func runMarkdownCmd(_ *cobra.Command, args []string) {
+	if len(markdownVars.title) < 1 {
+		log.L(log.Red, "title can not be empty")
+		return
+	}
 
-		client, err := newClient()
-		if err != nil {
-			log.L(log.Red, err.Error())
-			return
-		}
+	if len(markdownVars.text) < 1 {
+		log.L(log.Red, "text can not be empty")
+		return
+	}
 
-		msg := dingtalk.NewMarkdownMessage().
-			SetMarkdown(markdownVars.title, markdownVars.text).
-			SetAt(atMobiles, isAtAll)
-		if _, err := client.Send(msg); err != nil {
-			log.L(log.Red, err.Error())
-		}
-	},
+	client, err := newClient()
+	if err != nil {
+		log.L(log.Red, err.Error())
+		return
+	}
+
+	msg := dingtalk.NewMarkdownMessage().
+		SetMarkdown(markdownVars.title, markdownVars.text).
+		SetAt(atMobiles, isAtAll)
+	if _, err := client.Send(msg); err != nil {
+		log.L(log.Red, err.Error())
+	}
 }
 
 // MarkdownVars struct

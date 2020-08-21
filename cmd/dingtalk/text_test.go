@@ -1,0 +1,69 @@
+package dingtalk
+
+import (
+	"bou.ke/monkey"
+	"bytes"
+	"errors"
+	"github.com/CatchZeng/dingtalk"
+	"github.com/spf13/cobra"
+	"log"
+	"os"
+	"strings"
+	"testing"
+)
+
+func Test_runTextCmd(t *testing.T) {
+
+	t.Run("content is empty", func(t *testing.T) {
+		var buf bytes.Buffer
+		log.SetOutput(&buf)
+		defer func() {
+			log.SetOutput(os.Stderr)
+		}()
+
+		runTextCmd(&cobra.Command{}, []string{})
+		got := buf.String()
+
+		want := "content can not be empty"
+
+		if !strings.Contains(got, want) {
+			t.Errorf("runTextCmd() = %v, want %v", got, want)
+		}
+	})
+
+	t.Run("new client error", func(t *testing.T) {
+		var buf bytes.Buffer
+		log.SetOutput(&buf)
+		defer func() {
+			log.SetOutput(os.Stderr)
+		}()
+
+		textVars.content = "123"
+		msg := "new client error"
+
+		monkey.Patch(newClient, func() (*dingtalk.Client, error) {
+			return nil, errors.New(msg)
+		})
+		defer monkey.Unpatch(newClient)
+
+		runTextCmd(&cobra.Command{}, []string{})
+
+		got := buf.String()
+
+		if !strings.Contains(got, msg) {
+			t.Errorf("runTextCmd() = %v, want %v", got, msg)
+		}
+	})
+
+	t.Run("client send", func(t *testing.T) {
+		textVars.content = "123"
+		client := &dingtalk.Client{}
+
+		monkey.Patch(newClient, func() (*dingtalk.Client, error) {
+			return client, nil
+		})
+		defer monkey.Unpatch(newClient)
+
+		runTextCmd(&cobra.Command{}, []string{})
+	})
+}

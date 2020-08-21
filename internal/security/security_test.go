@@ -1,14 +1,39 @@
 package security
 
 import (
+	"bou.ke/monkey"
+	"fmt"
 	"strconv"
 	"testing"
 	"time"
 )
 
-func TestURL(t *testing.T) {
-	timestamp := "1582163555000"
+const (
+	timestamp   = "1582163555000"
+	accessToken = "1c53e149ba5de6597ca2442f0e901fd86156780b8ac141e4a75afdc44c85ca4f"
+	secret      = "SECb90923e19e58b466481e9e7b7a5b4f108a4531abde590ad3967fb29f0eae5c68"
+	signed      = "BQKsG%2BQOCl%2BbYJOLc6pxDHxjVquzlZPWgvRzeN2J5zY%3D"
+)
 
+func TestURL(t *testing.T) {
+	monkey.Patch(strconv.FormatInt, func(i int64, base int) string {
+		return timestamp
+	})
+
+	defer monkey.Unpatch(strconv.FormatInt)
+
+	got, err := URL(accessToken, secret)
+	if err != nil {
+		t.Errorf("URL() error = %v", err)
+	}
+
+	want := fmt.Sprintf("https://oapi.dingtalk.com/robot/send?access_token=%v&sign=%v&timestamp=%v", accessToken, signed, timestamp)
+	if got != want {
+		t.Errorf("URL() = %v, want %v", got, want)
+	}
+}
+
+func TestURLWithTimestamp(t *testing.T) {
 	type args struct {
 		accessToken string
 		secret      string
@@ -22,18 +47,18 @@ func TestURL(t *testing.T) {
 		{
 			name: "without sign",
 			args: args{
-				accessToken: "1c53e149ba5de6597ca2442f0e901fd86156780b8ac141e4a75afdc44c85ca4f",
+				accessToken: accessToken,
 			},
-			want:    "https://oapi.dingtalk.com/robot/send?access_token=1c53e149ba5de6597ca2442f0e901fd86156780b8ac141e4a75afdc44c85ca4f",
+			want:    fmt.Sprintf("https://oapi.dingtalk.com/robot/send?access_token=%v", accessToken),
 			wantErr: false,
 		},
 		{
 			name: "with sign",
 			args: args{
-				accessToken: "1c53e149ba5de6597ca2442f0e901fd86156780b8ac141e4a75afdc44c85ca4f",
-				secret:      "SECb90923e19e58b466481e9e7b7a5b4f108a4531abde590ad3967fb29f0eae5c68",
+				accessToken: accessToken,
+				secret:      secret,
 			},
-			want:    "https://oapi.dingtalk.com/robot/send?access_token=1c53e149ba5de6597ca2442f0e901fd86156780b8ac141e4a75afdc44c85ca4f&sign=BQKsG%2BQOCl%2BbYJOLc6pxDHxjVquzlZPWgvRzeN2J5zY%3D&timestamp=1582163555000",
+			want:    fmt.Sprintf("https://oapi.dingtalk.com/robot/send?access_token=%v&sign=%v&timestamp=%v", accessToken, signed, timestamp),
 			wantErr: false,
 		},
 	}
@@ -41,23 +66,20 @@ func TestURL(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			got, err := URLWithTimestamp(timestamp, tt.args.accessToken, tt.args.secret)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("URL() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("URLWithTimestamp() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 			if got != tt.want {
-				t.Errorf("URL() = %v, want %v", got, tt.want)
+				t.Errorf("URLWithTimestamp() = %v, want %v", got, tt.want)
 			}
 		})
 	}
 }
 
 func TestValidate(t *testing.T) {
-	timestamp := strconv.FormatInt(time.Now().Add(60*time.Second).Unix(), 10)
+	validateTimestamp := strconv.FormatInt(time.Now().Add(60*time.Second).Unix(), 10)
 
-	//accessToken = "1c53e149ba5de6597ca2442f0e901fd86156780b8ac141e4a75afdc44c85ca4f"
-	const secret = "SECb90923e19e58b466481e9e7b7a5b4f108a4531abde590ad3967fb29f0eae5c68"
-
-	result, err := sign(timestamp, secret)
+	result, err := sign(validateTimestamp, secret)
 	if err != nil {
 		t.Error(err)
 	}
@@ -72,7 +94,7 @@ func TestValidate(t *testing.T) {
 		t.Error("this should be err, but not")
 	}
 
-	b, err := Validate(result, timestamp, secret)
+	b, err := Validate(result, validateTimestamp, secret)
 	if err != nil {
 		t.Error(err)
 	} else {

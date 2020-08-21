@@ -11,68 +11,70 @@ var actionCardCmd = &cobra.Command{
 	Short: "send actionCard message with DingTalk robot",
 	Long:  `send actionCard message with DingTalk robot`,
 	Args:  cobra.MinimumNArgs(0),
-	Run: func(_ *cobra.Command, args []string) {
-		if len(actionCardVars.Title) < 1 {
-			log.L(log.Red, "title can not be empty")
+	Run:   runActionCardCmd,
+}
+
+func runActionCardCmd(_ *cobra.Command, args []string) {
+	if len(actionCardVars.Title) < 1 {
+		log.L(log.Red, "title can not be empty")
+		return
+	}
+
+	if len(actionCardVars.Text) < 1 {
+		log.L(log.Red, "text can not be empty")
+		return
+	}
+
+	var isOverallJump = false
+	if len(actionCardVars.SingleTitle) < 1 {
+		if len(btnTitles) < 1 {
+			log.L(log.Red, "btns can not be empty when singleTitle is empty")
 			return
 		}
-
-		if len(actionCardVars.Text) < 1 {
-			log.L(log.Red, "text can not be empty")
+	} else {
+		isOverallJump = true
+		if len(actionCardVars.SingleURL) < 1 {
+			log.L(log.Red, "singleURL can not be empty")
 			return
 		}
+	}
 
-		var isOverallJump = false
-		if len(actionCardVars.SingleTitle) < 1 {
-			if len(btnTitles) < 1 {
-				log.L(log.Red, "btns can not be empty when singleTitle is empty")
-				return
-			}
-		} else {
-			isOverallJump = true
-			if len(actionCardVars.SingleURL) < 1 {
-				log.L(log.Red, "singleURL can not be empty")
-				return
-			}
-		}
+	client, err := newClient()
+	if err != nil {
+		log.L(log.Red, err.Error())
+		return
+	}
 
-		client, err := newClient()
-		if err != nil {
-			log.L(log.Red, err.Error())
+	msg := dingtalk.NewActionCardMessage()
+	if isOverallJump {
+		msg.SetOverallJump(
+			actionCardVars.Title,
+			actionCardVars.Text,
+			actionCardVars.SingleTitle,
+			actionCardVars.SingleURL,
+			actionCardVars.BtnOrientation,
+			actionCardVars.HideAvatar)
+	} else {
+		if len(btnTitles) != len(btnActionURLs) {
+			log.L(log.Red, "btnTitles & btnActionURLs count must be equal")
 			return
 		}
-
-		msg := dingtalk.NewActionCardMessage()
-		if isOverallJump {
-			msg.SetOverallJump(
-				actionCardVars.Title,
-				actionCardVars.Text,
-				actionCardVars.SingleTitle,
-				actionCardVars.SingleURL,
-				actionCardVars.BtnOrientation,
-				actionCardVars.HideAvatar)
-		} else {
-			if len(btnTitles) != len(btnActionURLs) {
-				log.L(log.Red, "btnTitles & btnActionURLs count must be equal")
-				return
-			}
-			for i := 0; i < len(btnTitles); i++ {
-				actionCardVars.Btns = append(actionCardVars.Btns, dingtalk.Btn{
-					Title:     btnTitles[i],
-					ActionURL: btnActionURLs[i],
-				})
-			}
-			msg.SetIndependentJump(
-				actionCardVars.Title,
-				actionCardVars.Text,
-				actionCardVars.Btns,
-				actionCardVars.BtnOrientation,
-				actionCardVars.HideAvatar)
+		for i := 0; i < len(btnTitles); i++ {
+			actionCardVars.Btns = append(actionCardVars.Btns, dingtalk.Btn{
+				Title:     btnTitles[i],
+				ActionURL: btnActionURLs[i],
+			})
 		}
-		if _, err := client.Send(msg); err != nil {
-			log.L(log.Red, err.Error())
-		}
-	},
+		msg.SetIndependentJump(
+			actionCardVars.Title,
+			actionCardVars.Text,
+			actionCardVars.Btns,
+			actionCardVars.BtnOrientation,
+			actionCardVars.HideAvatar)
+	}
+	if _, err := client.Send(msg); err != nil {
+		log.L(log.Red, err.Error())
+	}
 }
 
 var actionCardVars dingtalk.ActionCard

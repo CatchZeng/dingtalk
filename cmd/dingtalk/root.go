@@ -1,10 +1,10 @@
 package dingtalk
 
 import (
+	"errors"
 	"fmt"
 	"github.com/CatchZeng/dingtalk"
 	"github.com/CatchZeng/dingtalk/configs"
-	"errors"
 	"github.com/spf13/viper"
 	"log"
 	"os"

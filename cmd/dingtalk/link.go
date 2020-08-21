@@ -11,34 +11,36 @@ var linkCmd = &cobra.Command{
 	Short: "send link message with DingTalk robot",
 	Long:  `send link message with DingTalk robot`,
 	Args:  cobra.MinimumNArgs(0),
-	Run: func(_ *cobra.Command, args []string) {
-		if len(linkVars.title) < 1 {
-			log.L(log.Red, "title can not be empty")
-			return
-		}
+	Run:   runLinkCmd,
+}
 
-		if len(linkVars.text) < 1 {
-			log.L(log.Red, "text can not be empty")
-			return
-		}
+func runLinkCmd(_ *cobra.Command, args []string) {
+	if len(linkVars.title) < 1 {
+		log.L(log.Red, "title can not be empty")
+		return
+	}
 
-		if len(linkVars.messageURL) < 1 {
-			log.L(log.Red, "messageURL can not be empty")
-			return
-		}
+	if len(linkVars.text) < 1 {
+		log.L(log.Red, "text can not be empty")
+		return
+	}
 
-		client, err := newClient()
-		if err != nil {
-			log.L(log.Red, err.Error())
-			return
-		}
+	if len(linkVars.messageURL) < 1 {
+		log.L(log.Red, "messageURL can not be empty")
+		return
+	}
 
-		msg := dingtalk.NewLinkMessage().
-			SetLink(linkVars.title, linkVars.text, linkVars.picURL, linkVars.messageURL)
-		if _, err := client.Send(msg); err != nil {
-			log.L(log.Red, err.Error())
-		}
-	},
+	client, err := newClient()
+	if err != nil {
+		log.L(log.Red, err.Error())
+		return
+	}
+
+	msg := dingtalk.NewLinkMessage().
+		SetLink(linkVars.title, linkVars.text, linkVars.picURL, linkVars.messageURL)
+	if _, err := client.Send(msg); err != nil {
+		log.L(log.Red, err.Error())
+	}
 }
 
 // LinkVars struct

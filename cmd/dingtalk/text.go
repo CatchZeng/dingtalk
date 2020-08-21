@@ -11,25 +11,27 @@ var textCmd = &cobra.Command{
 	Short: "send text message with DingTalk robot",
 	Long:  `send text message with DingTalk robot`,
 	Args:  cobra.MinimumNArgs(0),
-	Run: func(_ *cobra.Command, args []string) {
-		if len(textVars.content) < 1 {
-			log.L(log.Red, "content can not be empty")
-			return
-		}
+	Run:   runTextCmd,
+}
 
-		client, err := newClient()
-		if err != nil {
-			log.L(log.Red, err.Error())
-			return
-		}
+func runTextCmd(_ *cobra.Command, _ []string) {
+	if len(textVars.content) < 1 {
+		log.L(log.Red, "content can not be empty")
+		return
+	}
 
-		msg := dingtalk.NewTextMessage().
-			SetContent(textVars.content).
-			SetAt(atMobiles, isAtAll)
-		if _, err := client.Send(msg); err != nil {
-			log.L(log.Red, err.Error())
-		}
-	},
+	client, err := newClient()
+	if err != nil {
+		log.L(log.Red, err.Error())
+		return
+	}
+
+	msg := dingtalk.NewTextMessage().
+		SetContent(textVars.content).
+		SetAt(atMobiles, isAtAll)
+	if _, err := client.Send(msg); err != nil {
+		log.L(log.Red, err.Error())
+	}
 }
 
 // TextVars struct

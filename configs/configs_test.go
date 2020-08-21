@@ -72,7 +72,7 @@ func TestGetConfig(t *testing.T) {
 		})
 
 		key := "456"
-		if value , err := GetConfig(key); err != nil || value != key {
+		if value, err := GetConfig(key); err != nil || value != key {
 			t.Error("GetConfig error")
 		}
 	})
