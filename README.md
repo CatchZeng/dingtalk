@@ -28,29 +28,29 @@
 
 - [x] 支持加签
 
-  ![sign](https://dingtalkdoc.oss-cn-beijing.aliyuncs.com/images/0.0.210/1572261283991-f8e35f4d-6997-4a02-9704-843ee8f97464.png)
+  <img src="https://dingtalkdoc.oss-cn-beijing.aliyuncs.com/images/0.0.210/1572261283991-f8e35f4d-6997-4a02-9704-843ee8f97464.png" width = 50% />
 
 - [x] Text 消息
 
-  ![text](https://img.alicdn.com/tfs/TB1jFpqaRxRMKJjy0FdXXaifFXa-497-133.png)
+  <img src="https://img.alicdn.com/tfs/TB1jFpqaRxRMKJjy0FdXXaifFXa-497-133.png" width = 50% />
 
 - [x] Link 消息
 
-  ![link](https://dingtalkdoc.oss-cn-beijing.aliyuncs.com/images/0.0.210/1570679827267-6243216b-d1c3-48b7-9b1e-0f0b4211b50b.png)
+  <img src="https://dingtalkdoc.oss-cn-beijing.aliyuncs.com/images/0.0.210/1570679827267-6243216b-d1c3-48b7-9b1e-0f0b4211b50b.png" width = 50% />
 
 - [x] Markdown 消息
 
-  ![markdown](https://img.alicdn.com/tfs/TB1yL3taUgQMeJjy0FeXXXOEVXa-492-380.png)
+  <img src="https://img.alicdn.com/tfs/TB1yL3taUgQMeJjy0FeXXXOEVXa-492-380.png" width = 50% />
 
 - [x] ActionCard 消息
 
-  ![ActionCard1](https://img.alicdn.com/tfs/TB1nhWCiBfH8KJjy1XbXXbLdXXa-547-379.png)
+  <img src="https://img.alicdn.com/tfs/TB1nhWCiBfH8KJjy1XbXXbLdXXa-547-379.png" width = 50% />
 
-  ![ActionCard2](https://dingtalkdoc.oss-cn-beijing.aliyuncs.com/images/0.0.210/1570679939723-c1fb7861-5bcb-4c30-9e1b-033932f6b72f.png)
+  <img src="https://dingtalkdoc.oss-cn-beijing.aliyuncs.com/images/0.0.210/1570679939723-c1fb7861-5bcb-4c30-9e1b-033932f6b72f.png" width = 50% />
 
 - [x] FeedCard 消息
 
-  ![ActionCard1](http://img01.taobaocdn.com/top/i1/LB1R2evQVXXXXXDapXXXXXXXXXX)
+  <img src="http://img01.taobaocdn.com/top/i1/LB1R2evQVXXXXXDapXXXXXXXXXX" width = 50% />
 
 ## 安装
 
@@ -122,7 +122,7 @@ import (
 )
 
 func main() {
-	accessToken := "1c53e149ba5de6597cxxxxxx0e901fdxxxxxx80b8ac141e4a75afdc44c85ca4f" 
+	  accessToken := "1c53e149ba5de6597cxxxxxx0e901fdxxxxxx80b8ac141e4a75afdc44c85ca4f"
     secret := "SECb90923e19e58b466481e9e7b7a5bxxxxxx4531axxxxxxad3967fb29f0eae5c68"
     client := dingtalk.NewClient(accessToken, secret)
 
@@ -141,143 +141,32 @@ dingtalk text -t 1c53e149ba5de6597cxxxxxx0e901fdxxxxxx80b8ac141e4a75afdc44c85ca4
 
 #### Help
 
-- dingtalk
+```shell
+$ dingtalk -h
+dingtalk is a command line tool for DingTalk
 
-  ```shell
-  $ dingtalk -h
-  dingtalk is a command line tool for DingTalk
+Usage:
+  dingtalk [command]
 
-  Usage:
-    dingtalk [command]
+Available Commands:
+  actionCard  send actionCard message with DingTalk robot
+  feedCard    send feedCard message with DingTalk robot
+  help        Help about any command
+  link        send link message with DingTalk robot
+  markdown    send markdown message with DingTalk robot
+  text        send text message with DingTalk robot
+  version     dingtalk version
 
-  Available Commands:
-    actionCard  send actionCard message with DingTalk robot
-    feedCard    send feedCard message with DingTalk robot
-    help        Help about any command
-    link        send link message with DingTalk robot
-    markdown    send markdown message with DingTalk robot
-    text        send text message with DingTalk robot
-    version     dingtalk version
+Flags:
+  -m, --atMobiles strings   atMobiles
+  -h, --help                help for dingtalk
+  -a, --isAtAll             isAtAll
+  -s, --secret string       secret
+  -t, --token string        access_token
 
-  Flags:
-    -m, --atMobiles strings   atMobiles
-    -h, --help                help for dingtalk
-    -a, --isAtAll             isAtAll
-    -s, --secret string       secret
-    -t, --token string        access_token
+Use "dingtalk [command] --help" for more information about a command.
+```
 
-  Use "dingtalk [command] --help" for more information about a command.
-  ```
+## Stargazers
 
-- text
-
-  ```shell
-  $ dingtalk text -h
-  send text message with DingTalk robot
-
-  Usage:
-    dingtalk text [flags]
-
-  Flags:
-    -c, --content string   content
-    -h, --help             help for text
-
-  Global Flags:
-    -m, --atMobiles strings       atMobiles
-    -a, --isAtAll                 isAtAll
-    -s, --secret string           secret
-    -t, --token string            access_token
-  ```
-
-- link
-
-  ```shell
-  $ dingtalk link -h
-  send link message with DingTalk robot
-
-  Usage:
-    dingtalk link [flags]
-
-  Flags:
-    -h, --help                help for link
-    -u, --messageURL string   messageURL
-    -p, --picURL string       picURL
-    -e, --text string         text
-    -i, --title string        title
-
-  Global Flags:
-    -m, --atMobiles strings       atMobiles
-    -a, --isAtAll                 isAtAll
-    -s, --secret string           secret
-    -t, --token string            access_token
-  ```
-
-- markdown
-
-  ```shell
-  $ dingtalk markdown -h
-  send markdown message with DingTalk robot
-
-  Usage:
-    dingtalk markdown [flags]
-
-  Flags:
-    -h, --help           help for markdown
-    -e, --text string    text
-    -i, --title string   title
-
-  Global Flags:
-    -m, --atMobiles strings       atMobiles
-    -a, --isAtAll                 isAtAll
-    -s, --secret string           secret
-    -t, --token string            access_token
-  ```
-
-- actionCard
-
-  ```shell
-  $ dingtalk actionCard -h
-  send actionCard message with DingTalk robot
-
-  Usage:
-    dingtalk actionCard [flags]
-
-  Flags:
-    -c, --btnActionURLs strings   btnActionURLs
-    -o, --btnOrientation string   btnOrientation
-    -b, --btnTitles strings       btnTitles
-    -h, --help                    help for actionCard
-    -d, --hideAvatar string       hideAvatar
-    -n, --singleTitle string      singleTitle
-    -u, --singleURL string        singleURL
-    -e, --text string             text
-    -i, --title string            title
-
-  Global Flags:
-    -m, --atMobiles strings   atMobiles
-    -a, --isAtAll             isAtAll
-    -s, --secret string       secret
-    -t, --token string        access_token
-  ```
-
-- feedCard
-
-  ```shell
-  dingtalk feedCard -h
-  send feedCard message with DingTalk robot
-
-  Usage:
-    dingtalk feedCard [flags]
-
-  Flags:
-    -h, --help                  help for feedCard
-    -u, --messageURLs strings   messageURLs
-    -p, --picURLs strings       picURLs
-    -i, --titles strings        titles
-
-  Global Flags:
-    -m, --atMobiles strings   atMobiles
-    -a, --isAtAll             isAtAll
-    -s, --secret string       secret
-    -t, --token string        access_token
-  ```
+[![Stargazers over time](https://starchart.cc/CatchZeng/dingtalk.svg)](https://starchart.cc/CatchZeng/dingtalk)

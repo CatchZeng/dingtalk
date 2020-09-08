@@ -1,11 +1,12 @@
 package security
 
 import (
-	"bou.ke/monkey"
 	"fmt"
 	"strconv"
 	"testing"
 	"time"
+
+	"bou.ke/monkey"
 )
 
 const (

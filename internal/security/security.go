@@ -52,6 +52,7 @@ func URLWithTimestamp(timestamp string, accessToken string, secret string) (stri
 	return dtu.String(), nil
 }
 
+// Validate validate
 // https://ding-doc.dingtalk.com/doc#/serverapi2/elzz1p
 func Validate(signStr, timestamp, secret string) (bool, error) {
 	t, err := strconv.ParseInt(timestamp, 10, 64)
@@ -59,16 +60,16 @@ func Validate(signStr, timestamp, secret string) (bool, error) {
 		return false, err
 	}
 
-	timeGap := time.Now().Sub(time.Unix(t, 0))
+	timeGap := time.Since(time.Unix(t, 0))
 	if math.Abs(timeGap.Hours()) > 1 {
 		return false, fmt.Errorf("specified timestamp is expired")
 	}
 
-	if ourSign, err := sign(timestamp, secret); err != nil {
+	ourSign, err := sign(timestamp, secret)
+	if err != nil {
 		return false, err
-	} else {
-		return ourSign == signStr, nil
 	}
+	return ourSign == signStr, nil
 }
 
 func sign(timestamp string, secret string) (string, error) {
