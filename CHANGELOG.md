@@ -1,18 +1,16 @@
 # CHANGELOG
 
-## v2.1.0
+## v1.2.0
+
+### Refactor
+
+- project layout
 
 ### Added
 
 - support config.xml
 - validate function
 - .editconfig file
-
-## v2.0.0
-
-### Refactor
-
-- project layout
 
 ## v1.1.1
 

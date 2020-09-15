@@ -4,7 +4,7 @@ BASEDIR = $(shell pwd)
 export GO111MODULE=on
 
 APP_NAME=dingtalk
-APP_VERSION=2.1.0
+APP_VERSION=1.2.0
 IMAGE_NAME="catchzeng/${APP_NAME}:${APP_VERSION}"
 IMAGE_LATEST="catchzeng/${APP_NAME}:latest"
 

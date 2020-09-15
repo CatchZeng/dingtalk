@@ -1,10 +1,15 @@
 package dingtalk
 
 import (
-	"github.com/CatchZeng/gutils/version"
 	"log"
 
+	v "github.com/CatchZeng/gutils/version"
 	"github.com/spf13/cobra"
+)
+
+const (
+	version   = "1.2.0"
+	buildTime = "2020/09/15"
 )
 
 // versionCmd represents the version command
@@ -16,7 +21,7 @@ var versionCmd = &cobra.Command{
 }
 
 func runVersionCmd(_ *cobra.Command, _ []string) {
-	v := version.Stringify("2.1.0", "2020/08/21")
+	v := v.Stringify(version, buildTime)
 	log.Println(v)
 }
 
