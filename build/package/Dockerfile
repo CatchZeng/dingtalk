@@ -1,7 +1,4 @@
-FROM golang:1.13.1-alpine as builder
-ENV GO111MODULE=on
-ENV GOPROXY=https://goproxy.cn,direct
-ENV GOSUMDB=off
+FROM golang:1.16.4-alpine as builder
 RUN mkdir /build
 ADD . /build/
 WORKDIR /build
@@ -12,4 +9,3 @@ FROM alpine:3.7
 
 COPY --from=builder /build/dingtalk /usr/local/bin/dingtalk
 RUN chmod +x /usr/local/bin/dingtalk
-RUN dingtalk version

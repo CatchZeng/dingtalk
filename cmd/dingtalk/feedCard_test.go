@@ -1,15 +1,16 @@
 package dingtalk
 
 import (
-	"bou.ke/monkey"
 	"bytes"
 	"errors"
-	"github.com/CatchZeng/dingtalk"
-	"github.com/spf13/cobra"
 	"log"
 	"os"
 	"strings"
 	"testing"
+
+	"bou.ke/monkey"
+	"github.com/CatchZeng/dingtalk"
+	"github.com/spf13/cobra"
 )
 
 func Test_runFeedCardCmd(t *testing.T) {

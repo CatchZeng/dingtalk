@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/CatchZeng/dingtalk/cmd/dingtalk"
 	"log"
+
+	"github.com/CatchZeng/dingtalk/cmd/dingtalk"
 )
 
 func main() {

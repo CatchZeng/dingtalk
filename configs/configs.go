@@ -1,10 +1,11 @@
 package configs
 
 import (
-	"github.com/mitchellh/go-homedir"
-	"github.com/spf13/viper"
 	"log"
 	"path"
+
+	"github.com/mitchellh/go-homedir"
+	"github.com/spf13/viper"
 )
 
 // InitConfig reads in configs file and ENV variables if set.
@@ -24,7 +25,6 @@ func InitConfig() {
 
 	// If a configs file is found, read it in.
 	if err := viper.ReadInConfig(); err != nil {
-		log.Printf("failed to read config file: %v", err)
 		return
 	}
 	log.Println("using configs file:", viper.ConfigFileUsed())

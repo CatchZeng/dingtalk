@@ -1,10 +1,11 @@
 package dingtalk
 
 import (
-	"bou.ke/monkey"
 	"errors"
-	"github.com/CatchZeng/dingtalk/configs"
 	"testing"
+
+	"bou.ke/monkey"
+	"github.com/CatchZeng/dingtalk/configs"
 )
 
 func Test_newClient(t *testing.T) {

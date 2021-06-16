@@ -3,11 +3,12 @@ package dingtalk
 import (
 	"errors"
 	"fmt"
+	"log"
+	"os"
+
 	"github.com/CatchZeng/dingtalk"
 	"github.com/CatchZeng/dingtalk/configs"
 	"github.com/spf13/viper"
-	"log"
-	"os"
 
 	"github.com/spf13/cobra"
 )

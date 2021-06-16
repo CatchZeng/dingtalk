@@ -1,13 +1,14 @@
 package dingtalk
 
 import (
-	"bou.ke/monkey"
 	"errors"
-	"github.com/CatchZeng/dingtalk/internal/security"
 	"io"
 	"net/http"
 	"reflect"
 	"testing"
+
+	"bou.ke/monkey"
+	"github.com/CatchZeng/dingtalk/internal/security"
 
 	mock_message "github.com/CatchZeng/dingtalk/test/mocks/message"
 	"github.com/golang/mock/gomock"

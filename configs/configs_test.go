@@ -1,11 +1,12 @@
 package configs
 
 import (
-	"bou.ke/monkey"
 	"errors"
+	"testing"
+
+	"bou.ke/monkey"
 	"github.com/mitchellh/go-homedir"
 	"github.com/spf13/viper"
-	"testing"
 )
 
 func TestInitConfig(t *testing.T) {
