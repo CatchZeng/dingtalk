@@ -8,7 +8,9 @@
 
 [English](https://github.com/CatchZeng/dingtalk/blob/master/READMEEN.md)
 
-> DingTalk(dingding) 是钉钉机器人的 go 实现。支持 `Docker`、`Jenkinsfile`、`命令行`模式，`module` 模式，支持`加签`安全设置，支持`链式语法`创建消息，支持`文本、链接、Markdown、ActionCard、FeedCard` 消息类型
+> DingTalk(dingding) 是钉钉机器人的 go 实现。支持 **Docker、Jenkinsfile、命令行模式，module 模式**；支持**加签**安全设置，支持**链式语法**创建消息；支持**文本、链接、Markdown、ActionCard、FeedCard** 消息类型。
+
+> 注：使用飞书的小伙伴，可以使用[飞书（feishu）版](https://github.com/CatchZeng/feishu)。
 
 ## 文档
 
@@ -44,9 +46,9 @@
 
 - [x] ActionCard 消息
 
-  <img src="https://img.alicdn.com/tfs/TB1nhWCiBfH8KJjy1XbXXbLdXXa-547-379.png" width = 50% />
+    <img src="https://img.alicdn.com/tfs/TB1nhWCiBfH8KJjy1XbXXbLdXXa-547-379.png" width = 50% />
 
-  <img src="https://dingtalkdoc.oss-cn-beijing.aliyuncs.com/images/0.0.210/1570679939723-c1fb7861-5bcb-4c30-9e1b-033932f6b72f.png" width = 50% />
+    <img src="https://dingtalkdoc.oss-cn-beijing.aliyuncs.com/images/0.0.210/1570679939723-c1fb7861-5bcb-4c30-9e1b-033932f6b72f.png" width = 50% />
 
 - [x] FeedCard 消息
 

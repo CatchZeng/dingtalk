@@ -8,7 +8,7 @@
 
 [中文](https://github.com/CatchZeng/dingtalk/blob/master/README.md)
 
-> DingTalk (dingding) is the go implementation of the DingTalk robot. Support `Docker`, `Jenkinsfile`,`command line` mode, `module` mode, `signature security` settings, `chain syntax` to create messages, support `text, link, markdown、ActionCard、FeedCard` message types.
+> DingTalk (dingding) is the go implementation of the DingTalk robot. Support **Docker, Jenkinsfile,command line mode, module mode**, **signature security settings, chain syntax** to create messages, support **text, link, markdown、ActionCard、FeedCard** message types.
 
 ## Doc
 

@@ -2,8 +2,7 @@ FROM golang:1.16.4-alpine as builder
 RUN mkdir /build
 ADD . /build/
 WORKDIR /build
-RUN ls -la
-RUN go build -o dingtalk cmd/main.go
+RUN go mod tidy && -o dingtalk cmd/main.go
 
 FROM alpine:3.7
 
