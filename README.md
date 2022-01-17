@@ -70,10 +70,10 @@ docker pull catchzeng/dingtalk
 
 ```sh
 # Go 1.16+
-go install github.com/CatchZeng/dingtalk@latest
+go install github.com/CatchZeng/dingtalk@v1.3.1
 
 # Go version < 1.16
-go get -u github.com/CatchZeng/dingtalk@latest
+go get -u github.com/CatchZeng/dingtalk@v1.3.1
 ```
 
 ## 使用方法
