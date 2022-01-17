@@ -66,10 +66,14 @@ docker pull catchzeng/dingtalk
 
 到 [releases](https://github.com/CatchZeng/dingtalk/releases/) 下载相应平台的二进制可执行文件，然后加入到 PATH 环境变量即可。
 
-### go get 安装
+### go install 安装
 
-```shell
-go get github.com/CatchZeng/dingtalk
+```sh
+# Go 1.16+
+go install github.com/CatchZeng/dingtalk@latest
+
+# Go version < 1.16
+go get -u github.com/CatchZeng/dingtalk@latest
 ```
 
 ## 使用方法

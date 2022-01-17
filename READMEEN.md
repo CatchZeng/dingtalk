@@ -64,10 +64,14 @@ docker pull catchzeng/dingtalk
 
 Go to [releases](https://github.com/CatchZeng/dingtalk/releases/) to download the binary executable file of the corresponding platform, and then add it to the PATH environment variable.
 
-### with go get
+### with go install
 
-```shell
-go get github.com/CatchZeng/dingtalk
+```sh
+# Go 1.16+
+go install github.com/CatchZeng/dingtalk@latest
+
+# Go version < 1.16
+go get -u github.com/CatchZeng/dingtalk@latest
 ```
 
 ## Usage
