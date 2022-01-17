@@ -51,7 +51,7 @@ build-release:
 	rm -f dingtalk dingtalk.exe
 build-docker:
 	sh build/package/build.sh ${IMAGE_NAME}
-push-docker: build-docker
+push-docker:
 	docker tag ${IMAGE_NAME} ${IMAGE_LATEST};
 	docker push ${IMAGE_NAME};
 	docker push ${IMAGE_LATEST};
