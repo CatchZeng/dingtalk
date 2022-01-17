@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	version   = "1.2.2"
+	version   = "1.3.0"
 	buildTime = "2022/01/17"
 )
 
