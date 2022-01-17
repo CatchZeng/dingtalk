@@ -31,7 +31,11 @@ func runFeedCardCmd(_ *cobra.Command, args []string) {
 		for i := 0; i < len(feedCardVars.titles); i++ {
 			msg.AppendLink(feedCardVars.titles[i], feedCardVars.messageURLs[i], feedCardVars.picURLs[i])
 		}
-		if _, err := client.Send(msg); err != nil {
+		req, _, err := client.Send(msg)
+		if debug {
+			log.L(log.Green, req)
+		}
+		if err != nil {
 			log.L(log.Red, err.Error())
 		}
 	} else {

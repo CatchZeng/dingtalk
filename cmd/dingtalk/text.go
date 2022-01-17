@@ -29,7 +29,11 @@ func runTextCmd(_ *cobra.Command, _ []string) {
 	msg := dingtalk.NewTextMessage().
 		SetContent(textVars.content).
 		SetAt(atMobiles, isAtAll)
-	if _, err := client.Send(msg); err != nil {
+	req, _, err := client.Send(msg)
+	if debug {
+		log.L(log.Green, req)
+	}
+	if err != nil {
 		log.L(log.Red, err.Error())
 	}
 }

@@ -8,8 +8,8 @@ IMAGE_LATEST="catchzeng/${APP_NAME}:latest"
 
 all: mod fmt imports lint test
 first:
-	go get golang.org/x/tools/cmd/goimports
-	go get github.com/golangci/golangci-lint/cmd/golangci-lint@v1.39.0
+	go install golang.org/x/tools/cmd/goimports@latest
+	go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 fmt:
 	gofmt -w .
 mod:
@@ -25,7 +25,7 @@ mock:
 	sh scripts/mock.sh
 .PHONY: build
 build:
-	rm dingtalk
+	rm -f dingtalk
 	go build -o dingtalk cmd/main.go
 build-mac:
 	rm -f dingtalk dingtalk-darwin-amd64.zip

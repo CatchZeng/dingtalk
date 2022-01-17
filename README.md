@@ -30,19 +30,19 @@
 
 - [x] 支持加签
 
-  <img src="https://dingtalkdoc.oss-cn-beijing.aliyuncs.com/images/0.0.210/1572261283991-f8e35f4d-6997-4a02-9704-843ee8f97464.png" width = 50% />
+<img src="https://dingtalkdoc.oss-cn-beijing.aliyuncs.com/images/0.0.210/1572261283991-f8e35f4d-6997-4a02-9704-843ee8f97464.png" width = 50% />
 
 - [x] Text 消息
 
-  <img src="https://img.alicdn.com/tfs/TB1jFpqaRxRMKJjy0FdXXaifFXa-497-133.png" width = 50% />
+<img src="https://img.alicdn.com/tfs/TB1jFpqaRxRMKJjy0FdXXaifFXa-497-133.png" width = 50% />
 
 - [x] Link 消息
 
-  <img src="https://dingtalkdoc.oss-cn-beijing.aliyuncs.com/images/0.0.210/1570679827267-6243216b-d1c3-48b7-9b1e-0f0b4211b50b.png" width = 50% />
+<img src="https://dingtalkdoc.oss-cn-beijing.aliyuncs.com/images/0.0.210/1570679827267-6243216b-d1c3-48b7-9b1e-0f0b4211b50b.png" width = 50% />
 
 - [x] Markdown 消息
 
-  <img src="https://img.alicdn.com/tfs/TB1yL3taUgQMeJjy0FeXXXOEVXa-492-380.png" width = 50% />
+<img src="https://img.alicdn.com/tfs/TB1yL3taUgQMeJjy0FeXXXOEVXa-492-380.png" width = 50% />
 
 - [x] ActionCard 消息
 
@@ -52,7 +52,7 @@
 
 - [x] FeedCard 消息
 
-  <img src="http://img01.taobaocdn.com/top/i1/LB1R2evQVXXXXXDapXXXXXXXXXX" width = 50% />
+<img src="http://img01.taobaocdn.com/top/i1/LB1R2evQVXXXXXDapXXXXXXXXXX" width = 50% />
 
 ## 安装
 
@@ -138,8 +138,19 @@ func main() {
 #### Demo
 
 ```shell
-dingtalk text -t 1c53e149ba5de6597cxxxxxx0e901fdxxxxxx80b8ac141e4a75afdc44c85ca4f -s SECb90923e19e58b466481e9e7b7a5bxxxxxx4531axxxxxxad3967fb29f0eae5c68 -c "测试命令行 & at 某个人" -m "177010xxx60","177010xxx61"
+$ dingtalk text -t 1c53e149ba5de6597cxxxxxx0e901fdxxxxxx80b8ac141e4a75afdc44c85ca4f -s SECb90923e19e58b466481e9e7b7a5bxxxxxx4531axxxxxxad3967fb29f0eae5c68 -c "测试命令行 & at 某个人" -m "177010xxx60","177010xxx61"
 ```
+
+```shell
+$ dingtalk markdown -D -i "杭州天气" -e '## 杭州天气 @150XXXXXXXX
+ > 9度，西北风1级，空气良89，相对温度73%
+ > ![screenshot](https://img.alicdn.com/tfs/TB1NwmBEL9TBuNjy1zbXXXpepXa-2400-1218.png)
+ > ###### 10点20分发布 [天气](https://www.dingtalk.com)' -t "1c53e149ba5de6597ca2442f0e901fd86156780b8ac141e4a75afdc44c85ca4f"
+
+{"msgtype":"markdown","markdown":{"title":"杭州天气","text":"## 杭州天气 @150XXXXXXXX\n \u003e 9度，西北风1级，空气良89，相对温度73%\n \u003e ![screenshot](https://img.alicdn.com/tfs/TB1NwmBEL9TBuNjy1zbXXXpepXa-2400-1218.png)\n \u003e ###### 10点20分发布 [天气](https://www.dingtalk.com)"},"at":{"atMobiles":[],"isAtAll":false}}
+```
+
+> -D 参数：打印发送的消息内容
 
 #### Help
 
@@ -160,11 +171,12 @@ Available Commands:
   version     dingtalk version
 
 Flags:
-  -m, --atMobiles strings   atMobiles
-  -h, --help                help for dingtalk
-  -a, --isAtAll             isAtAll
-  -s, --secret string       secret
-  -t, --token string        access_token
+  -t, --access_token string   access_token
+  -m, --atMobiles strings     atMobiles
+  -D, --debug                 debug
+  -h, --help                  help for dingtalk
+  -a, --isAtAll               isAtAll
+  -s, --secret string         secret
 
 Use "dingtalk [command] --help" for more information about a command.
 ```

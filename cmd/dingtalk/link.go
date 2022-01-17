@@ -38,7 +38,11 @@ func runLinkCmd(_ *cobra.Command, args []string) {
 
 	msg := dingtalk.NewLinkMessage().
 		SetLink(linkVars.title, linkVars.text, linkVars.picURL, linkVars.messageURL)
-	if _, err := client.Send(msg); err != nil {
+	req, _, err := client.Send(msg)
+	if debug {
+		log.L(log.Green, req)
+	}
+	if err != nil {
 		log.L(log.Red, err.Error())
 	}
 }

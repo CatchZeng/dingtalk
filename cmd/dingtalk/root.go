@@ -66,6 +66,7 @@ func getSecret() string {
 var accessToken, secret string
 var isAtAll bool
 var atMobiles []string
+var debug bool
 
 func init() {
 	cobra.OnInitialize(configs.InitConfig)
@@ -74,6 +75,7 @@ func init() {
 	rootCmd.PersistentFlags().StringVarP(&secret, configs.Secret, "s", "", configs.Secret)
 	rootCmd.PersistentFlags().BoolVarP(&isAtAll, "isAtAll", "a", false, "isAtAll")
 	rootCmd.PersistentFlags().StringSliceVarP(&atMobiles, "atMobiles", "m", []string{}, "atMobiles")
+	rootCmd.PersistentFlags().BoolVarP(&debug, "debug", "D", false, "debug")
 
 	if err := viper.BindPFlag(configs.AccessToken, rootCmd.PersistentFlags().Lookup(configs.AccessToken)); err != nil {
 		log.Print(err)

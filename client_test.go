@@ -56,7 +56,7 @@ func TestClient_Send(t *testing.T) {
 
 		messgae.EXPECT().ToByte().Return([]byte{}, errors.New("test"))
 
-		if _, err := c.Send(messgae); err == nil {
+		if _, _, err := c.Send(messgae); err == nil {
 			t.Error("send error")
 		}
 	})
@@ -72,7 +72,7 @@ func TestClient_Send(t *testing.T) {
 			return "", errors.New("URL error")
 		})
 
-		if _, err := c.Send(messgae); err == nil {
+		if _, _, err := c.Send(messgae); err == nil {
 			t.Error("send error")
 		}
 	})
@@ -92,7 +92,7 @@ func TestClient_Send(t *testing.T) {
 			return nil, errors.New("NewRequest error")
 		})
 
-		if _, err := c.Send(messgae); err == nil {
+		if _, _, err := c.Send(messgae); err == nil {
 			t.Error("send error")
 		}
 	})
