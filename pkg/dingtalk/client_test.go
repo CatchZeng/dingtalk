@@ -49,41 +49,41 @@ func TestClient_Send(t *testing.T) {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
 
-	messgae := mock_message.NewMockMessage(ctrl)
+	message := mock_message.NewMockMessage(ctrl)
 
 	t.Run("message return error", func(t *testing.T) {
 		c := &Client{}
 
-		messgae.EXPECT().ToByte().Return([]byte{}, errors.New("test"))
+		message.EXPECT().ToByte().Return([]byte{}, errors.New("test"))
 
-		if _, _, err := c.Send(messgae); err == nil {
+		if _, _, err := c.Send(message); err == nil {
 			t.Error("send error")
 		}
 	})
 
 	t.Run("security.URL return error", func(t *testing.T) {
 		c := &Client{
-			AccessToken: "dasfsafewfewfwfewf",
-			Secret:      "ewfewfwfwefwafew",
+			AccessToken: "test-access-token",
+			Secret:      "test-secret",
 		}
 
-		messgae.EXPECT().ToByte().Return([]byte{}, nil)
+		message.EXPECT().ToByte().Return([]byte{}, nil)
 		monkey.Patch(security.URL, func(accessToken string, secret string) (string, error) {
 			return "", errors.New("URL error")
 		})
 
-		if _, _, err := c.Send(messgae); err == nil {
+		if _, _, err := c.Send(message); err == nil {
 			t.Error("send error")
 		}
 	})
 
 	t.Run("http.NewRequest return error", func(t *testing.T) {
 		c := &Client{
-			AccessToken: "dasfsafewfewfwfewf",
-			Secret:      "ewfewfwfwefwafew",
+			AccessToken: "test-access-token",
+			Secret:      "test-secret",
 		}
 
-		messgae.EXPECT().ToByte().Return([]byte{}, nil)
+		message.EXPECT().ToByte().Return([]byte{}, nil)
 		monkey.Patch(security.URL, func(accessToken string, secret string) (string, error) {
 			return "https://oapi.dingtalk.com/robot/send?access_token=ewfewfwfwefwafew", nil
 		})
@@ -92,7 +92,7 @@ func TestClient_Send(t *testing.T) {
 			return nil, errors.New("NewRequest error")
 		})
 
-		if _, _, err := c.Send(messgae); err == nil {
+		if _, _, err := c.Send(message); err == nil {
 			t.Error("send error")
 		}
 	})

@@ -6,8 +6,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/CatchZeng/dingtalk"
 	"github.com/CatchZeng/dingtalk/configs"
+	"github.com/CatchZeng/dingtalk/pkg/dingtalk"
 	"github.com/spf13/viper"
 
 	"github.com/spf13/cobra"

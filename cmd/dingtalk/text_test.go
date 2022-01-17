@@ -9,7 +9,7 @@ import (
 	"testing"
 
 	"bou.ke/monkey"
-	"github.com/CatchZeng/dingtalk"
+	"github.com/CatchZeng/dingtalk/pkg/dingtalk"
 	"github.com/spf13/cobra"
 )
 

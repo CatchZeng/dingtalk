@@ -54,7 +54,7 @@ func TestActionCardMessage_SetOverallJump(t *testing.T) {
 
 func TestActionCardMessage_SetIndependentJump(t *testing.T) {
 	got := NewActionCardMessage()
-	got.SetIndependentJump("title", "text", []Btn{Btn{
+	got.SetIndependentJump("title", "text", []Btn{{
 		Title:     "title",
 		ActionURL: "actionURL",
 	}}, "btnOrientation", "hideAvatar")
@@ -62,7 +62,7 @@ func TestActionCardMessage_SetIndependentJump(t *testing.T) {
 	card := ActionCard{
 		Title: "title",
 		Text:  "text",
-		Btns: []Btn{Btn{
+		Btns: []Btn{{
 			Title:     "title",
 			ActionURL: "actionURL",
 		}},
