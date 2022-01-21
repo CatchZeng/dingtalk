@@ -1,8 +1,9 @@
 package dingtalk
 
 import (
+	"log"
+
 	"github.com/CatchZeng/dingtalk/pkg/dingtalk"
-	"github.com/CatchZeng/gutils/log"
 	"github.com/spf13/cobra"
 )
 
@@ -16,14 +17,12 @@ var textCmd = &cobra.Command{
 
 func runTextCmd(_ *cobra.Command, _ []string) {
 	if len(textVars.content) < 1 {
-		log.L(log.Red, "content can not be empty")
-		return
+		log.Fatal("content can not be empty")
 	}
 
 	client, err := newClient()
 	if err != nil {
-		log.L(log.Red, err.Error())
-		return
+		log.Fatal(err.Error())
 	}
 
 	msg := dingtalk.NewTextMessage().
@@ -31,10 +30,10 @@ func runTextCmd(_ *cobra.Command, _ []string) {
 		SetAt(atMobiles, isAtAll)
 	req, _, err := client.Send(msg)
 	if debug {
-		log.L(log.Green, req)
+		log.Print(req)
 	}
 	if err != nil {
-		log.L(log.Red, err.Error())
+		log.Fatal(err.Error())
 	}
 }
 

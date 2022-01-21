@@ -1,8 +1,9 @@
 package dingtalk
 
 import (
+	"log"
+
 	"github.com/CatchZeng/dingtalk/pkg/dingtalk"
-	"github.com/CatchZeng/gutils/log"
 	"github.com/spf13/cobra"
 )
 
@@ -16,33 +17,28 @@ var actionCardCmd = &cobra.Command{
 
 func runActionCardCmd(_ *cobra.Command, args []string) {
 	if len(actionCardVars.Title) < 1 {
-		log.L(log.Red, "title can not be empty")
-		return
+		log.Fatal("title can not be empty")
 	}
 
 	if len(actionCardVars.Text) < 1 {
-		log.L(log.Red, "text can not be empty")
-		return
+		log.Fatal("text can not be empty")
 	}
 
 	var isOverallJump = false
 	if len(actionCardVars.SingleTitle) < 1 {
 		if len(btnTitles) < 1 {
-			log.L(log.Red, "btns can not be empty when singleTitle is empty")
-			return
+			log.Fatal("btns can not be empty when singleTitle is empty")
 		}
 	} else {
 		isOverallJump = true
 		if len(actionCardVars.SingleURL) < 1 {
-			log.L(log.Red, "singleURL can not be empty")
-			return
+			log.Fatal("singleURL can not be empty")
 		}
 	}
 
 	client, err := newClient()
 	if err != nil {
-		log.L(log.Red, err.Error())
-		return
+		log.Fatal(err.Error())
 	}
 
 	msg := dingtalk.NewActionCardMessage()
@@ -56,9 +52,9 @@ func runActionCardCmd(_ *cobra.Command, args []string) {
 			actionCardVars.HideAvatar)
 	} else {
 		if len(btnTitles) != len(btnActionURLs) {
-			log.L(log.Red, "btnTitles & btnActionURLs count must be equal")
-			return
+			log.Fatal("btnTitles & btnActionURLs count must be equal")
 		}
+
 		for i := 0; i < len(btnTitles); i++ {
 			actionCardVars.Btns = append(actionCardVars.Btns, dingtalk.Btn{
 				Title:     btnTitles[i],
@@ -74,10 +70,10 @@ func runActionCardCmd(_ *cobra.Command, args []string) {
 	}
 	req, _, err := client.Send(msg)
 	if debug {
-		log.L(log.Green, req)
+		log.Print(req)
 	}
 	if err != nil {
-		log.L(log.Red, err.Error())
+		log.Fatal(err.Error())
 	}
 }
 

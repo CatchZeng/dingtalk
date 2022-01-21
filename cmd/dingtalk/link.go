@@ -1,8 +1,9 @@
 package dingtalk
 
 import (
+	"log"
+
 	"github.com/CatchZeng/dingtalk/pkg/dingtalk"
-	"github.com/CatchZeng/gutils/log"
 	"github.com/spf13/cobra"
 )
 
@@ -16,34 +17,30 @@ var linkCmd = &cobra.Command{
 
 func runLinkCmd(_ *cobra.Command, args []string) {
 	if len(linkVars.title) < 1 {
-		log.L(log.Red, "title can not be empty")
-		return
+		log.Fatal("title can not be empty")
 	}
 
 	if len(linkVars.text) < 1 {
-		log.L(log.Red, "text can not be empty")
-		return
+		log.Fatal("text can not be empty")
 	}
 
 	if len(linkVars.messageURL) < 1 {
-		log.L(log.Red, "messageURL can not be empty")
-		return
+		log.Fatal("messageURL can not be empty")
 	}
 
 	client, err := newClient()
 	if err != nil {
-		log.L(log.Red, err.Error())
-		return
+		log.Fatal(err.Error())
 	}
 
 	msg := dingtalk.NewLinkMessage().
 		SetLink(linkVars.title, linkVars.text, linkVars.picURL, linkVars.messageURL)
 	req, _, err := client.Send(msg)
 	if debug {
-		log.L(log.Green, req)
+		log.Print(req)
 	}
 	if err != nil {
-		log.L(log.Red, err.Error())
+		log.Fatal(err.Error())
 	}
 }
 
