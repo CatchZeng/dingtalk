@@ -18,19 +18,23 @@ var linkCmd = &cobra.Command{
 func runLinkCmd(_ *cobra.Command, args []string) {
 	if len(linkVars.title) < 1 {
 		log.Fatal("title can not be empty")
+		return
 	}
 
 	if len(linkVars.text) < 1 {
 		log.Fatal("text can not be empty")
+		return
 	}
 
 	if len(linkVars.messageURL) < 1 {
 		log.Fatal("messageURL can not be empty")
+		return
 	}
 
 	client, err := newClient()
 	if err != nil {
 		log.Fatal(err.Error())
+		return
 	}
 
 	msg := dingtalk.NewLinkMessage().

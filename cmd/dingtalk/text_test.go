@@ -14,6 +14,11 @@ import (
 )
 
 func Test_runTextCmd(t *testing.T) {
+	fakeExit := func(int) {
+		log.Print("fake exit")
+	}
+	patch := monkey.Patch(os.Exit, fakeExit)
+	defer patch.Unpatch()
 
 	t.Run("content is empty", func(t *testing.T) {
 		var buf bytes.Buffer

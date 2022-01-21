@@ -18,11 +18,13 @@ var textCmd = &cobra.Command{
 func runTextCmd(_ *cobra.Command, _ []string) {
 	if len(textVars.content) < 1 {
 		log.Fatal("content can not be empty")
+		return
 	}
 
 	client, err := newClient()
 	if err != nil {
 		log.Fatal(err.Error())
+		return
 	}
 
 	msg := dingtalk.NewTextMessage().

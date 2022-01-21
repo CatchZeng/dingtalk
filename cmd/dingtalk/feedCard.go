@@ -18,12 +18,14 @@ var feedCardCmd = &cobra.Command{
 func runFeedCardCmd(_ *cobra.Command, args []string) {
 	if len(feedCardVars.titles) < 1 || len(feedCardVars.picURLs) < 1 || len(feedCardVars.messageURLs) < 1 {
 		log.Fatal("titles & picURLs & messageURLs can not be empty")
+		return
 	}
 
 	if len(feedCardVars.titles) == len(feedCardVars.picURLs) && len(feedCardVars.picURLs) == len(feedCardVars.messageURLs) {
 		client, err := newClient()
 		if err != nil {
 			log.Fatal(err.Error())
+			return
 		}
 
 		msg := dingtalk.NewFeedCardMessage()
@@ -36,6 +38,7 @@ func runFeedCardCmd(_ *cobra.Command, args []string) {
 		}
 		if err != nil {
 			log.Fatal(err.Error())
+			return
 		}
 	} else {
 		log.Fatal("titles & picURLs & messageURLs count must be equal")

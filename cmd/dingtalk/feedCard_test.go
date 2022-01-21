@@ -14,6 +14,12 @@ import (
 )
 
 func Test_runFeedCardCmd(t *testing.T) {
+	fakeExit := func(int) {
+		log.Print("fake exit")
+	}
+	patch := monkey.Patch(os.Exit, fakeExit)
+	defer patch.Unpatch()
+
 	const emptyMsg = "titles & picURLs & messageURLs can not be empty"
 	const differentCountMsg = "titles & picURLs & messageURLs count must be equal"
 

@@ -2,6 +2,8 @@ package dingtalk
 
 import (
 	"errors"
+	"log"
+	"os"
 	"testing"
 
 	"bou.ke/monkey"
@@ -9,6 +11,12 @@ import (
 )
 
 func Test_newClient(t *testing.T) {
+	fakeExit := func(int) {
+		log.Print("fake exit")
+	}
+	patch := monkey.Patch(os.Exit, fakeExit)
+	defer patch.Unpatch()
+
 	t.Run("getAccessToken return empty", func(t *testing.T) {
 		accessToken = ""
 		_, err := newClient()

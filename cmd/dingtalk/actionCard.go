@@ -18,27 +18,32 @@ var actionCardCmd = &cobra.Command{
 func runActionCardCmd(_ *cobra.Command, args []string) {
 	if len(actionCardVars.Title) < 1 {
 		log.Fatal("title can not be empty")
+		return
 	}
 
 	if len(actionCardVars.Text) < 1 {
 		log.Fatal("text can not be empty")
+		return
 	}
 
 	var isOverallJump = false
 	if len(actionCardVars.SingleTitle) < 1 {
 		if len(btnTitles) < 1 {
 			log.Fatal("btns can not be empty when singleTitle is empty")
+			return
 		}
 	} else {
 		isOverallJump = true
 		if len(actionCardVars.SingleURL) < 1 {
 			log.Fatal("singleURL can not be empty")
+			return
 		}
 	}
 
 	client, err := newClient()
 	if err != nil {
 		log.Fatal(err.Error())
+		return
 	}
 
 	msg := dingtalk.NewActionCardMessage()
@@ -53,6 +58,7 @@ func runActionCardCmd(_ *cobra.Command, args []string) {
 	} else {
 		if len(btnTitles) != len(btnActionURLs) {
 			log.Fatal("btnTitles & btnActionURLs count must be equal")
+			return
 		}
 
 		for i := 0; i < len(btnTitles); i++ {

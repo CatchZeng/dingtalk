@@ -18,15 +18,18 @@ var markdownCmd = &cobra.Command{
 func runMarkdownCmd(_ *cobra.Command, args []string) {
 	if len(markdownVars.title) < 1 {
 		log.Fatal("title can not be empty")
+		return
 	}
 
 	if len(markdownVars.text) < 1 {
 		log.Fatal("text can not be empty")
+		return
 	}
 
 	client, err := newClient()
 	if err != nil {
 		log.Fatal(err.Error())
+		return
 	}
 
 	msg := dingtalk.NewMarkdownMessage().

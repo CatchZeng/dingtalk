@@ -2,7 +2,7 @@ SHELL := /bin/bash
 BASEDIR = $(shell pwd)
 
 APP_NAME=dingtalk
-APP_VERSION=1.3.2
+APP_VERSION=1.3.3
 IMAGE_NAME="catchzeng/${APP_NAME}:${APP_VERSION}"
 IMAGE_LATEST="catchzeng/${APP_NAME}:latest"
 

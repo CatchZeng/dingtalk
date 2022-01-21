@@ -14,6 +14,11 @@ import (
 )
 
 func Test_runActionCardCmd(t *testing.T) {
+	fakeExit := func(int) {
+		log.Print("fake exit")
+	}
+	patch := monkey.Patch(os.Exit, fakeExit)
+	defer patch.Unpatch()
 
 	t.Run("title is empty", func(t *testing.T) {
 		var buf bytes.Buffer

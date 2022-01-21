@@ -68,10 +68,10 @@ Go to [releases](https://github.com/CatchZeng/dingtalk/releases/) to download th
 
 ```sh
 # Go 1.16+
-go install github.com/CatchZeng/dingtalk@v1.3.2
+go install github.com/CatchZeng/dingtalk@v1.3.3
 
 # Go version < 1.16
-go get -u github.com/CatchZeng/dingtalk@v1.3.2
+go get -u github.com/CatchZeng/dingtalk@v1.3.3
 ```
 
 ## Usage
