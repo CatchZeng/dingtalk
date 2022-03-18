@@ -2,7 +2,7 @@ SHELL := /bin/bash
 BASEDIR = $(shell pwd)
 
 APP_NAME=dingtalk
-APP_VERSION=1.3.3
+APP_VERSION=1.4.0
 IMAGE_NAME="catchzeng/${APP_NAME}:${APP_VERSION}"
 IMAGE_LATEST="catchzeng/${APP_NAME}:latest"
 
@@ -27,10 +27,14 @@ mock:
 build:
 	rm -f dingtalk
 	go build -o dingtalk main.go
-build-mac:
+build-darwin-amd64:
 	rm -f dingtalk dingtalk-darwin-amd64.zip
 	CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -o dingtalk main.go
 	zip dingtalk-darwin-amd64.zip dingtalk
+build-darwin-arm64:
+	rm -f dingtalk dingtalk-darwin-arm64.zip
+	CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -o dingtalk main.go
+	zip dingtalk-darwin-arm64.zip dingtalk
 build-linux:
 	rm -f dingtalk dingtalk-linux-amd64.zip
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o dingtalk main.go
@@ -44,7 +48,8 @@ build-win32:
 	CGO_ENABLED=0 GOOS=windows GOARCH=386 go build -o dingtalk.exe main.go
 	zip dingtalk-windows-386.zip dingtalk.exe
 build-release:
-	make build-mac
+	make build-darwin-amd64
+	make build-darwin-arm64
 	make build-linux
 	make build-win
 	make build-win32

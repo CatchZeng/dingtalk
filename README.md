@@ -28,6 +28,8 @@
 
 - [x] 支持[配置文件](https://github.com/CatchZeng/dingtalk#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
 
+- [x] 支持[环境变量](https://github.com/CatchZeng/dingtalk#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F)
+
 - [x] 支持加签
 
 <img src="https://dingtalkdoc.oss-cn-beijing.aliyuncs.com/images/0.0.210/1572261283991-f8e35f4d-6997-4a02-9704-843ee8f97464.png" width = 50% />
@@ -70,10 +72,10 @@ docker pull catchzeng/dingtalk
 
 ```sh
 # Go 1.16+
-go install github.com/CatchZeng/dingtalk@v1.3.3
+go install github.com/CatchZeng/dingtalk@v1.4.0
 
 # Go version < 1.16
-go get -u github.com/CatchZeng/dingtalk@v1.3.3
+go get -u github.com/CatchZeng/dingtalk@v1.4.0
 ```
 
 ## 使用方法
@@ -85,6 +87,14 @@ go get -u github.com/CatchZeng/dingtalk@v1.3.3
 ```yaml
 access_token: "1c53e149ba5de6597cxxxxxx0e901fdxxxxxx80b8ac141e4a75afdc44c85ca4f"
 secret: "SECb90923e19e58b466481e9e7b7a5bxxxxxx4531axxxxxxad3967fb29f0eae5c68"
+```
+
+### 环境变量
+
+```sh
+$ export ACCESS_TOKEN=1c53e149ba5de6597cxxxxxx0e901fdxxxxxx80b8ac141e4a75afdc44c85ca4f
+$ export SECRET=SECb90923e19e58b466481e9e7b7a5bxxxxxx4531axxxxxxad3967fb29f0eae5c68
+$ dingtalk link -i "标题" -e "信息" -u "https://catchzeng.com/" -p "https://catchzeng.com/img/avatar-hux.jpg" -a
 ```
 
 ### Docker

@@ -2,7 +2,9 @@ package configs
 
 import (
 	"log"
+	"os"
 	"path"
+	"strings"
 
 	"github.com/mitchellh/go-homedir"
 	"github.com/spf13/viper"
@@ -32,6 +34,14 @@ func InitConfig() {
 
 // GetConfig get configs with key
 func GetConfig(key string) (string, error) {
+	// Check the environment variable
+	envKey := strings.ToUpper(key)
+	result := os.Getenv(envKey)
+
+	if result != "" {
+		return result, nil
+	}
+
 	// If a configs file is found, read it in.
 	err := viper.ReadInConfig()
 	if err == nil {
