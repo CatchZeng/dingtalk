@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## v1.4.0
+
+### Added
+
+- Support environment variables
+
+### Refactor
+
+- update to golang 1.18.1
+
 ## v1.2.0
 
 ### Refactor
