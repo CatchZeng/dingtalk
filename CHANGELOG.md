@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v1.5.0
+
+### Added
+
+- Support the environment variable prefix
+
 ## v1.4.0
 
 ### Added

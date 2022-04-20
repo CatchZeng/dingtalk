@@ -23,6 +23,8 @@ func InitConfig() {
 	viper.AddConfigPath(configPath)
 	viper.SetConfigName("config")
 
+	envPrefix := os.Getenv("DINGTALK_ENV_PREFIX")
+	viper.SetEnvPrefix(envPrefix)
 	viper.AutomaticEnv() // read in environment variables that match
 
 	// If a configs file is found, read it in.
@@ -35,7 +37,8 @@ func InitConfig() {
 // GetConfig get configs with key
 func GetConfig(key string) (string, error) {
 	// Check the environment variable
-	envKey := strings.ToUpper(key)
+	envPrefix := os.Getenv("DINGTALK_ENV_PREFIX")
+	envKey := envPrefix + strings.ToUpper(key)
 	result := os.Getenv(envKey)
 
 	if result != "" {

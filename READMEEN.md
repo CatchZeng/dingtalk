@@ -70,10 +70,10 @@ Go to [releases](https://github.com/CatchZeng/dingtalk/releases/) to download th
 
 ```sh
 # Go 1.16+
-go install github.com/CatchZeng/dingtalk@v1.4.0
+go install github.com/CatchZeng/dingtalk@v1.5.0
 
 # Go version < 1.16
-go get -u github.com/CatchZeng/dingtalk@v1.4.0
+go get -u github.com/CatchZeng/dingtalk@v1.5.0
 ```
 
 ## Usage
@@ -92,7 +92,7 @@ secret: "SECb90923e19e58b466481e9e7b7a5bxxxxxx4531axxxxxxad3967fb29f0eae5c68"
 ```sh
 $ export ACCESS_TOKEN=1c53e149ba5de6597cxxxxxx0e901fdxxxxxx80b8ac141e4a75afdc44c85ca4f
 $ export SECRET=SECb90923e19e58b466481e9e7b7a5bxxxxxx4531axxxxxxad3967fb29f0eae5c68
-$ dingtalk link -i "标题" -e "信息" -u "https://catchzeng.com/" -p "https://catchzeng.com/img/avatar-hux.jpg" -a
+$ dingtalk link -i "标题" -e "信息" -u "https://makeoptim.com/" -p "https://makeoptim.com/assets/img/logo.png" -a
 ```
 
 ### Docker
@@ -117,7 +117,7 @@ pipeline {
     stages {
         stage('notify') {
             steps {
-                sh 'dingtalk link -t ${DING_TOKEN} -s ${DING_SECRET} -i "标题" -e "信息" -u "https://catchzeng.com/" -p "https://catchzeng.com/img/avatar-hux.jpg" -a'
+                sh 'dingtalk link -t ${DING_TOKEN} -s ${DING_SECRET} -i "标题" -e "信息" -u "https://makeoptim.com/" -p "https://makeoptim.com/assets/img/logo.png" -a'
             }
         }
     }
