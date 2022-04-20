@@ -95,6 +95,15 @@ $ export SECRET=SECb90923e19e58b466481e9e7b7a5bxxxxxx4531axxxxxxad3967fb29f0eae5
 $ dingtalk link -i "标题" -e "信息" -u "https://makeoptim.com/" -p "https://makeoptim.com/assets/img/logo.png" -a
 ```
 
+You can also set a **prefix** for environment variables.
+
+```sh
+$ export DINGTALK_ENV_PREFIX="DINGTALK_"
+$ export DINGTALK_ACCESS_TOKEN="1c53e149ba5de6597cxxxxxx0e901fdxxxxxx80b8ac141e4a75afdc44c85ca4f"
+$ export DINGTALK_SECRET="SECb90923e19e58b466481e9e7b7a5bxxxxxx4531axxxxxxad3967fb29f0eae5c68"
+$ dingtalk link -i "标题" -e "信息" -u "https://makeoptim.com/" -p "https://makeoptim.com/assets/img/logo.png" -a
+```
+
 ### Docker
 
 ```shell
