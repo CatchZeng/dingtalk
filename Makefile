@@ -21,6 +21,8 @@ lint:
 .PHONY: test
 test:
 	sh scripts/test.sh
+test-sonar:
+	go test -gcflags=-l -coverpkg=./... -coverprofile=coverage.data ./...
 mock:
 	sh scripts/mock.sh
 .PHONY: build

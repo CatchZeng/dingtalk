@@ -6,3 +6,5 @@ dingtalk-windows-amd64.zip
 dingtalk.exe
 .idea
 coverage.txt
+coverage.data
+.scannerwork
