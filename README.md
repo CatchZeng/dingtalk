@@ -137,17 +137,21 @@ pipeline {
 
 ### 作为 module
 
+```sh
+go get github.com/CatchZeng/dingtalk
+```
+
 ```go
 package main
 
 import (
     "log"
 
-    "github.com/CatchZeng/dingtalk"
+    "github.com/CatchZeng/dingtalk/pkg/dingtalk"
 )
 
 func main() {
-	  accessToken := "1c53e149ba5de6597cxxxxxx0e901fdxxxxxx80b8ac141e4a75afdc44c85ca4f"
+	accessToken := "1c53e149ba5de6597cxxxxxx0e901fdxxxxxx80b8ac141e4a75afdc44c85ca4f"
     secret := "SECb90923e19e58b466481e9e7b7a5bxxxxxx4531axxxxxxad3967fb29f0eae5c68"
     client := dingtalk.NewClient(accessToken, secret)
 

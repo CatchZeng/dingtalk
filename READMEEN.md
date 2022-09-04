@@ -135,13 +135,17 @@ pipeline {
 
 ### Use as module
 
+```sh
+go get github.com/CatchZeng/dingtalk
+```
+
 ```go
 package main
 
 import (
     "log"
 
-    "github.com/CatchZeng/dingtalk"
+    "github.com/CatchZeng/dingtalk/pkg/dingtalk"
 )
 
 func main() {
