@@ -22,14 +22,15 @@ type FeedCardLink struct {
 
 // ToByte to byte
 func (m *FeedCardMessage) ToByte() ([]byte, error) {
-	m.MsgType = MsgTypeFeedCard
 	jsonByte, err := json.Marshal(m)
 	return jsonByte, err
 }
 
 // NewFeedCardMessage new message
 func NewFeedCardMessage() *FeedCardMessage {
-	msg := FeedCardMessage{}
+	msg := FeedCardMessage{
+		MsgType: MsgTypeFeedCard,
+	}
 	return &msg
 }
 

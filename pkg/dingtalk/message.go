@@ -24,5 +24,6 @@ type Message interface {
 // At at struct
 type At struct {
 	AtMobiles []string `json:"atMobiles"`
+	AtUserIds []string `json:"atUserIds"`
 	IsAtAll   bool     `json:"isAtAll"`
 }

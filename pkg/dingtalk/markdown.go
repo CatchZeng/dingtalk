@@ -17,14 +17,15 @@ type Markdown struct {
 
 // ToByte to byte
 func (m *MarkdownMessage) ToByte() ([]byte, error) {
-	m.MsgType = MsgTypeMarkdown
 	jsonByte, err := json.Marshal(m)
 	return jsonByte, err
 }
 
 // NewMarkdownMessage new message
 func NewMarkdownMessage() *MarkdownMessage {
-	msg := MarkdownMessage{}
+	msg := MarkdownMessage{
+		MsgType: MsgTypeMarkdown,
+	}
 	return &msg
 }
 

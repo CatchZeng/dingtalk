@@ -18,14 +18,15 @@ type Link struct {
 
 // ToByte to byte
 func (m *LinkMessage) ToByte() ([]byte, error) {
-	m.MsgType = MsgTypeLink
 	jsonByte, err := json.Marshal(m)
 	return jsonByte, err
 }
 
 // NewLinkMessage new message
 func NewLinkMessage() *LinkMessage {
-	msg := LinkMessage{}
+	msg := LinkMessage{
+		MsgType: MsgTypeLink,
+	}
 	return &msg
 }
 

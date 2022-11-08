@@ -15,7 +15,7 @@ import (
 // https://oapi.dingtalk.com/robot/send?access_token=xxx
 const dingTalkOAPI = "oapi.dingtalk.com"
 
-var dingTalkURL url.URL = url.URL{
+var dingTalkURL = url.URL{
 	Scheme: "https",
 	Host:   dingTalkOAPI,
 	Path:   "robot/send",
@@ -25,7 +25,7 @@ var dingTalkURL url.URL = url.URL{
 // If no signature is set, the secret is set to ""
 // 如果没有加签，secret 设置为 "" 即可
 func URL(accessToken string, secret string) (string, error) {
-	timestamp := strconv.FormatInt(time.Now().Unix()*1000, 10)
+	timestamp := strconv.FormatInt(time.Now().UnixMilli(), 10)
 	return URLWithTimestamp(timestamp, accessToken, secret)
 }
 

@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"time"
 
@@ -31,7 +31,7 @@ type Response struct {
 	ErrCode int64  `json:"errcode"`
 }
 
-const httpTimoutSecond = time.Duration(30) * time.Second
+const httpTimoutSecond = 30 * time.Second
 
 // Send message
 func (d *Client) Send(message Message) (string, *Response, error) {
@@ -52,7 +52,7 @@ func (d *Client) Send(message Message) (string, *Response, error) {
 	if err != nil {
 		return reqString, res, err
 	}
-	req.Header.Add("Accept-Charset", "utf8")
+	req.Header.Add("Accept-Charset", "UTF-8")
 	req.Header.Add("Content-Type", "application/json")
 
 	client := new(http.Client)
@@ -63,7 +63,7 @@ func (d *Client) Send(message Message) (string, *Response, error) {
 	}
 	defer resp.Body.Close()
 
-	resultByte, err := ioutil.ReadAll(resp.Body)
+	resultByte, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return reqString, res, err
 	}

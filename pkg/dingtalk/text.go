@@ -23,7 +23,9 @@ func (m *TextMessage) ToByte() ([]byte, error) {
 
 // NewTextMessage new message
 func NewTextMessage() *TextMessage {
-	msg := TextMessage{}
+	msg := TextMessage{
+		MsgType: MsgTypeText,
+	}
 	return &msg
 }
 
