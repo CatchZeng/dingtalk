@@ -27,14 +27,15 @@ type Btn struct {
 
 // ToByte to byte
 func (m *ActionCardMessage) ToByte() ([]byte, error) {
-	m.MsgType = MsgTypeActionCard
 	jsonByte, err := json.Marshal(m)
 	return jsonByte, err
 }
 
 // NewActionCardMessage new message
 func NewActionCardMessage() *ActionCardMessage {
-	msg := ActionCardMessage{}
+	msg := ActionCardMessage{
+		MsgType: MsgTypeActionCard,
+	}
 	return &msg
 }
 
