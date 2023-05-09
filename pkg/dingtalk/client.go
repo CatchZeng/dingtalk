@@ -2,6 +2,7 @@ package dingtalk
 
 import (
 	"bytes"
+	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -15,6 +16,7 @@ import (
 type Client struct {
 	AccessToken string
 	Secret      string
+	SkipVerify  bool
 }
 
 // NewClient new dingtalk client
@@ -56,6 +58,11 @@ func (d *Client) Send(message Message) (string, *Response, error) {
 	req.Header.Add("Content-Type", "application/json")
 
 	client := new(http.Client)
+	if d.SkipVerify {
+		client.Transport = &http.Transport{
+			TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
+		}
+	}
 	client.Timeout = httpTimoutSecond
 	resp, err := client.Do(req)
 	if err != nil {
